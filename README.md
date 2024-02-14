@@ -1,8 +1,7 @@
 ## Setup
 
 1. `npm install`
-2. Create a PostgreSQL database, or use an existing one from the previous exercises.
-3. Setup `.env` files in `client` and `server` based on `.env.example` files.
+2. Setup `.env` files in `client` and `server` based on `.env.example` files.
 
 ## Tests
 
