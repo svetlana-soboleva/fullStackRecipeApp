@@ -61,6 +61,9 @@ export class Recipe {
     cascade: ['insert'],
   })
   comments: Comment[]
+
+  @Column({ type: 'enum', enum: ['public', 'private'], default: 'public' })
+  visibility: string
 }
 
 export type RecipeBare = Omit<
@@ -83,6 +86,7 @@ export const recipeSchema = validates<RecipeBare>().with({
   picture_link: z.string(),
   created_at: z.date().nullable(),
   updated_at: z.date().nullable(),
+  visibility: z.string(),
 })
 
 export const recipeInsertSchema = recipeSchema.omit({ id: true })
