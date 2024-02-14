@@ -16,12 +16,12 @@ const router = createRouter({
           component: () => import('../views/DashboardView.vue'),
         },
         {
-          path: 'project/create',
+          path: 'recipe/create',
           name: 'ProjectCreate',
           component: () => import('../views/ProjectCreateView.vue'),
         },
         {
-          path: 'project/:id',
+          path: 'recipe/:id',
           name: 'Project',
           component: () => import('../views/ProjectView.vue'),
         },

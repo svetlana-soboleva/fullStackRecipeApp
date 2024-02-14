@@ -9,13 +9,11 @@ import { FwbButton } from 'flowbite-vue'
       <div class="items-center lg:flex">
         <div class="lg:w-1/2">
           <h2 class="text-3xl font-bold text-gray-800 dark:text-gray-100">
-            A better way to track bugs
+            Create your own recipe book!
           </h2>
 
           <p class="mt-4 text-gray-500 dark:text-gray-400 lg:max-w-md">
-            Designed for developers, testers, and project managers alike,
-            <strong>Ladybug</strong> ensures your projects stay on course and maintain the highest
-            quality standards.
+            Add your favorite recipes, create your own recipes.
           </p>
 
           <div class="mt-6 flex items-center gap-2">
@@ -42,12 +40,12 @@ import { FwbButton } from 'flowbite-vue'
           <div class="flex items-center justify-center lg:justify-end">
             <div class="max-w-lg">
               <picture>
-                <source srcset="../assets/landing-4.avif" type="image/avif" />
-                <source srcset="../assets/landing-4.webp" type="image/webp" />
-                <source srcset="../assets/landing-4.jpg" type="image/jpeg" />
+                <!--  <source srcset="../assets/landing-4.avif" type="image/avif" />
+                <source srcset="../assets/landing-4.webp" type="image/webp" /> -->
+                <source srcset="../assets/landing.jpeg" type="image/jpeg" />
                 <img
                   class="h-64 w-full rounded-md object-cover object-center shadow"
-                  src="../assets/landing-4.jpg"
+                  src="../assets/landing.jpg"
                   alt=""
                 />
               </picture>
