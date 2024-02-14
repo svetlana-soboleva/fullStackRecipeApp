@@ -3,6 +3,7 @@ import { ref } from 'vue'
 import PageForm from '@/components/PageForm.vue'
 import { FwbAlert, FwbButton, FwbInput } from 'flowbite-vue'
 import { useRouter } from 'vue-router'
+import { login } from '../stores/user'
 
 const router = useRouter()
 
@@ -14,7 +15,12 @@ const userForm = ref({
 const errorMessage = ref('')
 
 async function submitLogin() {
-  router.push({ name: 'Dashboard' })
+  try {
+    await login(userForm.value)
+    router.push({ name: 'Dashboard' })
+  } catch (error: any) {
+    errorMessage.value = error.message || 'An unexpected error occurred.'
+  }
 }
 </script>
 
@@ -32,7 +38,6 @@ async function submitLogin() {
         v-model="userForm.password"
         :required="true"
       />
-
       <FwbAlert v-if="errorMessage" data-testid="errorMessage" type="danger">
         {{ errorMessage }}
       </FwbAlert>
