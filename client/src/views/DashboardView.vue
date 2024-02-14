@@ -33,7 +33,7 @@ const recipes = ref<RecipeBare[]>([
       <FwbButton
         component="RouterLink"
         tag="router-link"
-        :href="({ title: 'RecipeCreate' } as any)"
+        :href="({ name: 'RecipeCreate' } as any)"
         data-testid="createRecipe"
         size="xl"
       >
