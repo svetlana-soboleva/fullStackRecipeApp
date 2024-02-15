@@ -1,24 +1,15 @@
 <script lang="ts" setup>
-import { ref } from 'vue'
+import { trpc } from '../trpc'
+import { onBeforeMount, ref } from 'vue'
 import { FwbAlert, FwbButton } from 'flowbite-vue'
 import type { RecipeBare } from '@mono/server/src/shared/entities'
 import Recipe from '@/components/Recipe.vue'
 
-const recipes = ref<RecipeBare[]>([
-  {
-    id: 1,
-    title: 'Recipe 1',
-    description: 'any discription',
-    instructions: 'do like so',
-    cooking_time: 15,
-    servings: 4,
-    video_link: 'https://',
-    picture_link: 'url/',
-    created_at: new Date(2024, 1, 1),
-    updated_at: new Date(2024, 2, 2),
-    visibility: 'public',
-  },
-])
+const recipes = ref<RecipeBare[]>([])
+
+onBeforeMount(async () => {
+  recipes.value = await trpc.recipe.find.query()
+})
 </script>
 
 <template>

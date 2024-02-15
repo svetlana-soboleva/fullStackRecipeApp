@@ -33,3 +33,9 @@ export const authContext = (
   authUser: authUserSchema.parse(user),
   ...context,
 })
+
+export const nonAuthContext = (
+  context: Partial<Context> & ContextMinimal
+): Context => ({
+  ...context,
+})

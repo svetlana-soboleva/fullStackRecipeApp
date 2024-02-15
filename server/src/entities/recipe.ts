@@ -2,30 +2,39 @@ import { validates } from '@server/utils/validation'
 import {
   Column,
   Entity,
-  JoinColumn,
   ManyToOne,
   PrimaryGeneratedColumn,
   OneToMany,
+  JoinColumn,
 } from 'typeorm'
 import { z } from 'zod'
 import { User } from './user'
 import { Category } from './category'
 import { Comment } from './comment'
-import { RecipeIngredient } from './recipeIngredient'
 
 @Entity()
 export class Recipe {
   @PrimaryGeneratedColumn()
   id: number
 
+  @Column('integer')
+  userId: number
+
   @Column('text')
   title: string
+
+  @ManyToOne(() => Category, (category) => category.recipe)
+  @JoinColumn()
+  category: Category
 
   @Column('text')
   description: string
 
   @Column('text')
   instructions: string
+
+  @Column('text')
+  ingredients: string
 
   @Column({ type: 'int' })
   cooking_time: number
@@ -48,15 +57,6 @@ export class Recipe {
   @Column('timestamp with time zone', { nullable: true })
   updated_at: Date | null
 
-  @ManyToOne(() => Category, (category) => category.recipe)
-  @JoinColumn()
-  category: Category
-
-  @OneToMany(() => RecipeIngredient, (ingredient) => ingredient.recipe, {
-    cascade: ['insert'],
-  })
-  ingredients: RecipeIngredient[]
-
   @OneToMany(() => Comment, (comment) => comment.recipe, {
     cascade: ['insert'],
   })
@@ -66,13 +66,11 @@ export class Recipe {
   visibility: string
 }
 
-export type RecipeBare = Omit<
-  Recipe,
-  'user' | 'category' | 'ingredients' | 'comments'
->
+export type RecipeBare = Omit<Recipe, 'user' | 'comments' | 'category'>
 
 export const recipeSchema = validates<RecipeBare>().with({
   id: z.number().int().positive(),
+  userId: z.number().positive(),
   title: z
     .string()
     .trim()
@@ -80,6 +78,7 @@ export const recipeSchema = validates<RecipeBare>().with({
     .max(100),
   description: z.string(),
   instructions: z.string(),
+  ingredients: z.string(),
   cooking_time: z.number().int().positive(),
   servings: z.number().int().positive(),
   video_link: z.string(),

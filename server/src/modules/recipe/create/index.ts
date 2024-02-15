@@ -2,7 +2,7 @@ import { Recipe, recipeInsertSchema } from '@server/entities/recipe'
 import { authenticatedProcedure } from '@server/trpc/authenticatedProcedure'
 
 export default authenticatedProcedure
-  .input(recipeInsertSchema)
+  .input(recipeInsertSchema.omit({ userId: true }))
   .mutation(async ({ input: recipeData, ctx: { authUser, db } }) => {
     const recipe = {
       ...recipeData,

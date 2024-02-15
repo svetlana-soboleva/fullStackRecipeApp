@@ -11,18 +11,21 @@ const recipeForm = ref({
   title: '',
   description: '',
   instructions: '',
+  ingredients: '',
   cooking_time: '',
   servings: '',
   video_link: '',
   picture_link: '',
+  //hardcoded
   created_at: new Date(),
   updated_at: new Date(),
   visibility: '',
 })
 
+//category
 const errorMessage = ref('')
 
-async function createProject() {
+async function createRecipe() {
   try {
     await trpc.recipe.create.mutate(recipeForm.value)
     router.push({ name: 'Dashboard' })
@@ -34,7 +37,7 @@ async function createProject() {
 
 <template>
   <div class="flex items-center justify-between">
-    <form aria-label="Project" @submit.prevent="createProject">
+    <form aria-label="Project" @submit.prevent="createRecipe">
       <div class="space-y-6">
         <FwbHeading tag="h4">Create a new recipe</FwbHeading>
 
@@ -48,7 +51,6 @@ async function createProject() {
             placeholder="My recipe"
           />
         </div>
-
         <!-- Description -->
         <div class="mt-6">
           <FwbInput
@@ -72,7 +74,17 @@ async function createProject() {
             rows="8"
           />
         </div>
-
+        <!-- Ingredients -->
+        <div class="mt-6">
+          <FwbInput
+            aria-label="Ingredients"
+            v-model="recipeForm.ingredients"
+            label="Ingredients"
+            placeholder="Add ingredients..."
+            type="textarea"
+            rows="8"
+          />
+        </div>
         <!-- Cooking Time -->
         <div class="mt-6">
           <FwbInput
