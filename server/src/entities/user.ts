@@ -7,7 +7,7 @@ import {
   Unique,
 } from 'typeorm'
 import { z } from 'zod'
-import { Comment } from './comment'
+import { Recipe } from './recipe'
 
 @Entity()
 export class User {
@@ -25,15 +25,15 @@ export class User {
   @Column('text', { select: false })
   password: string
 
-  @OneToMany(() => Comment, (comment) => comment.user, {
+  @OneToMany(() => Recipe, (recipe) => recipe.user, {
     cascade: ['insert'],
   })
-  comments: Comment[]
+  recipes: Recipe[]
 
-  // maybe add role 
+  // maybe add role
 }
 
-export type UserBare = Omit<User, 'projects' | 'comments'>
+export type UserBare = Omit<User, 'recipes'>
 
 export const userSchema = validates<UserBare>().with({
   id: z.number().int().positive(),

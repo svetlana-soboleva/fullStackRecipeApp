@@ -1,3 +1,6 @@
+// to do create categoty ? + tests
+
+
 ## Setup
 
 1. `npm install`

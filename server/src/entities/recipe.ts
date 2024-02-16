@@ -10,7 +10,7 @@ import {
 import { z } from 'zod'
 import { User } from './user'
 import { Category } from './category'
-import { Comment } from './comment'
+import { Step } from './step'
 
 @Entity()
 export class Recipe {
@@ -23,18 +23,15 @@ export class Recipe {
   @Column('text')
   title: string
 
+  @Column('text')
+  categoryId: number
+
   @ManyToOne(() => Category, (category) => category.recipe)
   @JoinColumn()
   category: Category
 
   @Column('text')
   description: string
-
-  @Column('text')
-  instructions: string
-
-  @Column('text')
-  ingredients: string
 
   @Column({ type: 'int' })
   cooking_time: number
@@ -57,16 +54,14 @@ export class Recipe {
   @Column('timestamp with time zone', { nullable: true })
   updated_at: Date | null
 
-  @OneToMany(() => Comment, (comment) => comment.recipe, {
-    cascade: ['insert'],
-  })
-  comments: Comment[]
-
   @Column({ type: 'enum', enum: ['public', 'private'], default: 'public' })
   visibility: string
+
+  @OneToMany(() => Step, (step) => step.recipe, { cascade: ['insert'] })
+  steps: Step[]
 }
 
-export type RecipeBare = Omit<Recipe, 'user' | 'comments' | 'category'>
+export type RecipeBare = Omit<Recipe, 'user' | 'steps' | 'category'>
 
 export const recipeSchema = validates<RecipeBare>().with({
   id: z.number().int().positive(),
@@ -76,9 +71,8 @@ export const recipeSchema = validates<RecipeBare>().with({
     .trim()
     .min(2, 'Recipe title must be at least 2 characters long')
     .max(100),
+  categoryId: z.number(),
   description: z.string(),
-  instructions: z.string(),
-  ingredients: z.string(),
   cooking_time: z.number().int().positive(),
   servings: z.number().int().positive(),
   video_link: z.string(),

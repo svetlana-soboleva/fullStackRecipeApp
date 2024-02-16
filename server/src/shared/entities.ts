@@ -3,5 +3,6 @@
 
 export type * from '../entities/recipe'
 export type * from '../entities/user'
-export type * from '../entities/comment'
-
+export type * from '../entities/category'
+export type * from '../entities/ingredient'
+export type * from '../entities/step'

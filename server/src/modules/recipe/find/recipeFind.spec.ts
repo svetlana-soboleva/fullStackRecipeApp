@@ -1,6 +1,10 @@
 import { authContext } from '@tests/utils/context'
-import { Recipe, User } from '@server/entities'
-import { fakeRecipe, fakeUser } from '@server/entities/tests/fakes'
+import { Category, Recipe, User } from '@server/entities'
+import {
+  fakeCategory,
+  fakeRecipe,
+  fakeUser,
+} from '@server/entities/tests/fakes'
 import { createTestDatabase } from '@tests/utils/database'
 import router from '..'
 
@@ -11,13 +15,16 @@ it('should return a list o recipies of the user', async () => {
     .getRepository(User)
     .save([fakeUser(), fakeUser()])
 
+  const [category, categoryOther] = await db
+    .getRepository(Category)
+    .save([fakeCategory(), fakeCategory()])
+
   await db
     .getRepository(Recipe)
     .save([
-      fakeRecipe({ userId: user.id }),
-      fakeRecipe({ userId: userOther.id }),
+      fakeRecipe({ userId: user.id, categoryId: category.id }),
+      fakeRecipe({ userId: userOther.id, categoryId: categoryOther.id }),
     ])
-
 
   const { find } = router.createCaller(authContext({ db }, user))
   const userRecipes = await find()

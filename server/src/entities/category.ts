@@ -20,7 +20,7 @@ export class Category {
 export type CategoryBare = Omit<Category, 'recipe'>
 export const categorySchema = validates<CategoryBare>().with({
   id: z.number().int().positive(),
-  name: z.string().min(3),
+  name: z.string().min(3).toLowerCase().trim(),
 })
 
 export const categoryInserSchema = categorySchema.omit({ id: true })
