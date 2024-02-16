@@ -29,6 +29,8 @@ export class User {
     cascade: ['insert'],
   })
   comments: Comment[]
+
+  // maybe add role 
 }
 
 export type UserBare = Omit<User, 'projects' | 'comments'>

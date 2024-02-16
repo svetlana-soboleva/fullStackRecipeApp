@@ -11,13 +11,18 @@ it('should return all public recipes', async () => {
     .getRepository(User)
     .save([fakeUser(), fakeUser()])
 
+  const publicRecipe = fakeRecipe({
+    userId: userOther.id,
+    visibility: 'public',
+  })
   await db
     .getRepository(Recipe)
     .save([
       fakeRecipe({ userId: user.id, visibility: 'private' }),
-      fakeRecipe({ userId: userOther.id, visibility: 'public' }),
+      publicRecipe,
     ])
   const { findPublicRecipes } = router.createCaller(nonAuthContext({ db }))
-  const publicRecipies = await findPublicRecipes()
-  expect(publicRecipies).toHaveLength(1)
+  const publicRecipes = await findPublicRecipes()
+
+  expect(publicRecipes).toContainEqual(publicRecipe)
 })

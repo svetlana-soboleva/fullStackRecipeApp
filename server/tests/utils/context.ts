@@ -20,12 +20,6 @@ export const requestContext = (
   ...context,
 })
 
-/**
- * Creates a new context object with an authenticated user.
- * @param context - The context object to extend.
- * @param user - The authenticated user to add to the context.
- * @returns A new context object with the authenticated user added.
- */
 export const authContext = (
   context: Partial<Context> & ContextMinimal,
   user: AuthUser = fakeUser()

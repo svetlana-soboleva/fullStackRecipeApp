@@ -9,7 +9,7 @@ export async function createTestDatabase() {
   return db
 }
 
-export function createMockDatabase(repositories: any) {
+/* export function createMockDatabase(repositories: any) {
   return {
     getRepository: (entity: any) => {
       if (!(entity.name in repositories)) {
@@ -22,3 +22,4 @@ export function createMockDatabase(repositories: any) {
     },
   } as any
 }
+ */
