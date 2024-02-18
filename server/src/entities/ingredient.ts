@@ -27,7 +27,7 @@ export class Ingredient {
 export type IngredientBare = Omit<Ingredient, 'step'>
 export const ingredientSchema = validates<IngredientBare>().with({
   id: z.number().int().positive(),
-  name: z.string().trim().toLowerCase(),
+  name: z.string().trim(),
   amount: z.number(),
   unit: z.string().min(1).max(64),
   stepId: z.number().positive(),

@@ -1,6 +1,8 @@
 import type { User } from '@server/entities/user'
 import type { Recipe } from '@server/entities/recipe'
 import type { Category } from '@server/entities/category'
+import type { Step } from '@server/entities/step'
+import type { Ingredient } from '@server/entities/ingredient'
 
 import { random } from '@tests/utils/random'
 
@@ -11,6 +13,7 @@ export const fakeUser = <T extends Partial<User>>(overrides: T = {} as T) => ({
   email: random.email(),
   password: 'Password.123!',
   username: random.name(),
+  admin: false,
   ...overrides,
 })
 
@@ -37,5 +40,21 @@ export const fakeCategory = <T extends Partial<Category>>(
 ) => ({
   id: randomNumber(),
   name: random.string(),
+  ...overrides,
+})
+
+export const fakeStep = <T extends Partial<Step>>(overrides: T = {} as T) => ({
+  id: randomNumber(),
+  description: random.string(),
+  ...overrides,
+})
+
+export const fakeIngredient = <T extends Partial<Ingredient>>(
+  overrides: T = {} as T
+) => ({
+  id: randomNumber(),
+  name: random.string(),
+  amount: random.floating(),
+  unit: random.string(),
   ...overrides,
 })

@@ -30,7 +30,8 @@ export class User {
   })
   recipes: Recipe[]
 
-  // maybe add role
+  @Column('boolean', { default: false })
+  admin: boolean
 }
 
 export type UserBare = Omit<User, 'recipes'>
@@ -40,14 +41,18 @@ export const userSchema = validates<UserBare>().with({
   username: z.string().trim().toLowerCase(),
   email: z.string().trim().toLowerCase().email(),
   password: z.string().min(8).max(64),
+  admin: z.boolean(),
 })
 
 export const userInsertSchema = userSchema.omit({ id: true })
 
 export type UserInsert = z.infer<typeof userInsertSchema>
 
-export type AuthUser = Pick<User, 'id'>
+export type AuthUser = Pick<User, 'id' | 'admin'>
 
 export const authUserSchema = validates<AuthUser>().with({
   id: z.number().int().positive(),
+  admin: z.boolean(),
 })
+
+export const userUpdateSchema = userSchema.omit({ admin: true })
