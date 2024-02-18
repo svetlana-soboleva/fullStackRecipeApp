@@ -20,7 +20,6 @@ it('should create a recipe', async () => {
     video_link: 'http://',
     picture_link: 'http://',
     created_at: null,
-    updated_at: null,
     visibility: 'public',
   })
 

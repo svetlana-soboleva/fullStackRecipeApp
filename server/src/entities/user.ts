@@ -15,8 +15,8 @@ export class User {
   id: number
 
   @Unique(['username'])
-  @Column('text')
-  username: string
+  @Column('text', { nullable: true })
+  username: string | null
 
   @Unique(['email'])
   @Column('text')
@@ -38,13 +38,16 @@ export type UserBare = Omit<User, 'recipes'>
 
 export const userSchema = validates<UserBare>().with({
   id: z.number().int().positive(),
-  username: z.string().trim().toLowerCase(),
+  username: z.string().trim().nullable(),
   email: z.string().trim().toLowerCase().email(),
   password: z.string().min(8).max(64),
   admin: z.boolean(),
 })
 
-export const userInsertSchema = userSchema.omit({ id: true })
+export const userInsertSchema = userSchema.omit({ id: true }).extend({
+  username: userSchema.shape.username.default(null),
+  admin: userSchema.shape.admin.default(false),
+})
 
 export type UserInsert = z.infer<typeof userInsertSchema>
 
@@ -55,4 +58,5 @@ export const authUserSchema = validates<AuthUser>().with({
   admin: z.boolean(),
 })
 
-export const userUpdateSchema = userSchema.omit({ admin: true })
+export const userUpdateSchema = userSchema.omit({ password: true })
+export type UserUpdateSchema = z.infer<typeof userUpdateSchema>

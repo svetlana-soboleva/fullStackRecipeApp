@@ -25,7 +25,7 @@ export default publicProcedure
       where: {
         email,
       },
-    })) as Pick<User, 'id' | 'password'> | undefined
+    })) as Pick<User, 'id' | 'password' | 'admin'> | undefined
 
     if (!user) {
       throw new TRPCError({

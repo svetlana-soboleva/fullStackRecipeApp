@@ -9,11 +9,11 @@ import { Category, Recipe, Step, User } from '@server/entities'
 
 export default async function setupStepTest() {
   const db = await createTestDatabase()
-  const users = await db.getRepository(User).save([fakeUser(), fakeUser()])
+  const users = await db.getRepository(User).save([fakeUser(), fakeUser(), fakeUser(), fakeUser()])
 
   const categories = await db
     .getRepository(Category)
-    .save([fakeCategory(), fakeCategory()])
+    .save([fakeCategory(), fakeCategory(), fakeCategory(), fakeCategory()])
 
   const recipe1 = await db
     .getRepository(Recipe)

@@ -20,7 +20,10 @@ export class Ingredient {
   @Column('integer')
   stepId: number
 
-  @ManyToOne(() => Step, (step) => step.ingredients)
+  @ManyToOne(() => Step, (step) => step.ingredients, {
+    onDelete: 'CASCADE',
+    orphanedRowAction: 'delete',
+  })
   step: Step
 }
 

@@ -3,7 +3,7 @@ import type { Recipe } from '@server/entities/recipe'
 import type { Category } from '@server/entities/category'
 import type { Step } from '@server/entities/step'
 import type { Ingredient } from '@server/entities/ingredient'
-
+import type { UserProfile } from '@server/entities/userProfile'
 import { random } from '@tests/utils/random'
 
 const randomNumber = () => random.integer({ min: 1, max: 100000 })
@@ -12,7 +12,7 @@ export const fakeUser = <T extends Partial<User>>(overrides: T = {} as T) => ({
   id: randomNumber(),
   email: random.email(),
   password: 'Password.123!',
-  username: random.name(),
+  username: random.word(),
   admin: false,
   ...overrides,
 })
@@ -56,5 +56,16 @@ export const fakeIngredient = <T extends Partial<Ingredient>>(
   name: random.string(),
   amount: random.floating(),
   unit: random.string(),
+  ...overrides,
+})
+
+export const fakeUserProfile = <T extends Partial<UserProfile>>(
+  overrides: T = {} as T
+) => ({
+  id: randomNumber(),
+  name: random.word(),
+  surname: random.word(),
+  profile_picture: random.string(),
+  about: random.string(),
   ...overrides,
 })

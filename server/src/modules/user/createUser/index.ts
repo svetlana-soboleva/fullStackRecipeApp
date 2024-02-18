@@ -10,32 +10,36 @@ export default publicProcedure
       email: true,
       password: true,
       username: true,
+      admin: true,
     })
   )
-  .mutation(async ({ input: { email, password, username }, ctx: { db } }) => {
-    const hash = await bcrypt.hash(password, config.auth.passwordCost)
+  .mutation(
+    async ({ input: { email, password, username, admin }, ctx: { db } }) => {
+      const hash = await bcrypt.hash(password, config.auth.passwordCost)
 
-    try {
-      const user = await db.getRepository(User).save({
-        email,
-        username,
-        password: hash,
-      })
+      try {
+        const user = await db.getRepository(User).save({
+          email,
+          username,
+          password: hash,
+          admin,
+        })
 
-      return {
-        id: user.id,
-        username: user.username,
-      }
-    } catch (error) {
-      if (!(error instanceof Error)) {
+        return {
+          id: user.id,
+          email: user.email,
+        }
+      } catch (error) {
+        if (!(error instanceof Error)) {
+          throw error
+        }
+        if (error.message.includes('duplicate key')) {
+          throw new TRPCError({
+            code: 'BAD_REQUEST',
+            message: 'User with this email or username already exists',
+          })
+        }
         throw error
       }
-      if (error.message.includes('duplicate key')) {
-        throw new TRPCError({
-          code: 'BAD_REQUEST',
-          message: 'User with this email or username already exists',
-        })
-      }
-      throw error
     }
-  })
+  )
