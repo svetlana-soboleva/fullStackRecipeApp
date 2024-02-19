@@ -84,4 +84,4 @@ export const recipeSchema = validates<RecipeBare>().with({
 
 export const recipeInsertSchema = recipeSchema.omit({ id: true, updated_at: true })
 export type RecipeInsert = z.infer<typeof recipeInsertSchema>
-/* export const recipeUpdateSchema */
+

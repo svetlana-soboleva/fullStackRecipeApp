@@ -6,7 +6,7 @@ export default publicProcedure
   .input(recipeSchema.shape.id)
   .query(async ({ input: recipeId, ctx: { db } }) => {
     const recipe = (await db.getRepository(Recipe).findOne({
-      where: { id: recipeId, visibility: 'public' }, // Ensure the recipe is public
+      where: { id: recipeId, visibility: 'public' },
     })) as RecipeBare;
 
     if (!recipe) {

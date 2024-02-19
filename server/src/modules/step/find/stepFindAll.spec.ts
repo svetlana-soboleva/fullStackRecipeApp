@@ -1,18 +1,19 @@
 import { authContext } from '@tests/utils/context'
+import setupTest from '@server/entities/tests/setup'
 import stepRouter from '..'
-import setupStepTest from '../tests/setup'
+
 
 it('should return a list of steps of given recipe', async () => {
-  const { db, recipe1, user } = await setupStepTest()
+  const { db, recipes, users } = await setupTest()
 
-  const { find } = stepRouter.createCaller(authContext({ db }, user))
+  const { find } = stepRouter.createCaller(authContext({ db }, users[0]))
 
   const stepsFound = await find({
-    recipeId: recipe1.id,
+    recipeId: recipes[0].id,
   })
   expect(stepsFound).toMatchObject([
     {
-      recipeId: recipe1.id,
+      recipeId: recipes[0].id,
     },
   ])
 })

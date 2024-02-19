@@ -1,16 +1,17 @@
 import { fakeRecipe, fakeStep } from '@server/entities/tests/fakes'
 import { Recipe } from '@server/entities'
 import { authContext } from '@tests/utils/context'
+import setupTest from '@server/entities/tests/setup'
 import stepRouter from '..'
-import setupStepTest from '../tests/setup'
+
 
 it('should save and return a step', async () => {
-  const { db, user, category } = await setupStepTest()
-  const { create } = stepRouter.createCaller(authContext({ db }, user))
+  const { db, users, categories } = await setupTest()
+  const { create } = stepRouter.createCaller(authContext({ db }, users[0]))
 
   const recipe = await db
     .getRepository(Recipe)
-    .save(fakeRecipe({ categoryId: category.id, userId: user.id }))
+    .save(fakeRecipe({ categoryId: categories[0].id, userId: users[0].id }))
 
   const step = fakeStep({ recipeId: recipe.id })
   const stepCreated = await create(step)

@@ -6,7 +6,6 @@ import createMemoryDatabase from './createMemoryDatabase'
 export function createDatabase(
   options: Partial<DataSourceOptions | { type: 'pg-mem' }> = {}
 ) {
-  // Run with an in-memory database.
   if (options.type === 'pg-mem') {
     return createMemoryDatabase()
   }
