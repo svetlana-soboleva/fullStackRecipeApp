@@ -1,40 +1,51 @@
-## Setup
+# Recipe App
 
-1. `npm install`
-2. Setup `.env` files in `client` and `server` based on `.env.example` files.
+Welcome to the Recipe App! This is a project developed with the goal of creating a platform for sharing and discovering high-quality recipes. As a pastry chef, I understand the challenges of finding reliable and professional recipes. This app aims to bridge that gap and provide a platform where everyone can access and cook like a pro.
+
+# Motivation
+
+The idea for this project originated from my own experiences in the culinary world. I wanted to create a space where people, whether professional chefs or home cooks, could access a diverse range of reliable and well-crafted recipes. By sharing my knowledge and passion for cooking, I hope to make the culinary experience enjoyable and accessible to everyone.
+
+# Project Overview
+
+## Features
+
+Recipes: Browse a collection of recipes with detailed instructions and ingredients.
+Categories: Organize recipes into categories for easy navigation.
+Users: Create an account, log in, and contribute recipes to the community.
+Steps: Explore recipes step by step, including detailed descriptions and associated ingredients.
+Ingredients: Access ingredient details and explore their use in various recipes.
+
+## Technology Stack
+
+TypeORM: Utilizes various relationships (ManyToOne, OneToMany, ManyToMany) to model complex database relationships.
+Express.js: A backend framework for handling HTTP requests.
+Database: Implements a relational database to store recipes, users, categories, steps, and ingredients.
+
+## Getting Started
+
+1. Clone the repository to your local machine.
+2. 3. Install dependencies using npm install.
+
+`npm install`
+
+3. Setup `.env` files in `server` based on `.env.example` files.
+
+```bash
+Note: This project focuses on the backend functionality, and there is currently no frontend. The backend provides a robust foundation, and frontend development may be considered in the future.
+```
 
 ## Tests
 
 ```bash
-# using -w packageName is not required
-# if you are already in the package directory
-
-# front end unit and E2E tests
-npm test -w client
-
-# front end unit tests
-npm run test:unit -w client
-
-# front end E2E tests
-npm run test:e2e -w client
-
-# back end tests with an in-memory database
-npm test -w server
-
-# back end tests with a development database
-npm run test:db -w server
+npm run test
 ```
 
-## Running the server
+# Future Development
 
-In development mode:
+The Recipe App is an evolving project, and future developments may include:
 
-```bash
-npm run dev
-```
-
-In development mode:
-
-```bash
-npm run dev
-```
+Review System: Allowing users to leave reviews and ratings for recipes.
+Comments: Adding a comment section for users to share their tips and experiences.
+Frontend: Developing a user-friendly frontend to enhance the overall user experience.
+Feel free to contribute, suggest improvements, or share your favorite recipes to make this platform even better! Happy cooking!
