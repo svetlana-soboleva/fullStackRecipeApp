@@ -2,7 +2,6 @@ import { Recipe, recipeSchema, type RecipeBare } from '@server/entities/recipe'
 import { authenticatedProcedure } from '@server/trpc/authenticatedProcedure'
 import { TRPCError } from '@trpc/server'
 
-
 export default authenticatedProcedure
   .input(recipeSchema.shape.id)
   .query(async ({ input: recipeId, ctx: { authUser, db } }) => {

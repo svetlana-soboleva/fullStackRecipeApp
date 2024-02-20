@@ -43,7 +43,7 @@ it('should throw an error if the recipe is not found', async () => {
   const { get } = recipeRouter.createCaller(
     authContext({ db }, { id: recipe.userId, admin: true })
   )
-  const error = await get(10).catch((err) => err)
+  const error = await get(101010).catch((err) => err)
   expect(error).toBeInstanceOf(TRPCError)
   expect(error.code).toBe('NOT_FOUND')
   expect(error.message).toBe('Recipe was not found')

@@ -6,6 +6,7 @@ import {
   PrimaryGeneratedColumn,
   OneToMany,
   JoinColumn,
+  
 } from 'typeorm'
 import { z } from 'zod'
 import { User } from './user'
@@ -58,6 +59,7 @@ export class Recipe {
   visibility: string
 
   @OneToMany(() => Step, (step) => step.recipe, { cascade: ['insert'] })
+
   steps: Step[]
 }
 
@@ -82,6 +84,8 @@ export const recipeSchema = validates<RecipeBare>().with({
   visibility: z.string(),
 })
 
-export const recipeInsertSchema = recipeSchema.omit({ id: true, updated_at: true })
+export const recipeInsertSchema = recipeSchema.omit({
+  id: true,
+  updated_at: true,
+})
 export type RecipeInsert = z.infer<typeof recipeInsertSchema>
-

@@ -31,4 +31,3 @@ it('should return public recipes of a given category', async () => {
   })
   expect(recipesFound).toHaveLength(1)
 })
-

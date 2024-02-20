@@ -5,6 +5,7 @@ import {
   PrimaryGeneratedColumn,
   ManyToOne,
   OneToMany,
+  JoinTable,
 } from 'typeorm'
 import { z } from 'zod'
 import { Recipe } from './recipe'
@@ -28,8 +29,9 @@ export class Step {
   recipe: Recipe
 
   @OneToMany(() => Ingredient, (ingredient) => ingredient.step, {
-    cascade: true,
+    eager: true,
   })
+  @JoinTable()
   ingredients: Ingredient[]
 }
 
