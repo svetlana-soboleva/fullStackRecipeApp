@@ -8,9 +8,11 @@ import userRouter from '..'
 const db = await createTestDatabase()
 const userRepository = db.getRepository(User)
 const user = await userRepository.save(fakeUser())
+const wrongUser = await userRepository.save(fakeUser())
 const { update } = userRouter.createCaller(authContext({ db }, user))
 
 it('should update a user', async () => {
+  // @ts-ignore
   const { password, ...updates } = {
     ...user,
     username: 'new name',
@@ -21,4 +23,13 @@ it('should update a user', async () => {
 
   const usersAll = await userRepository.find()
   expect(usersAll).toContainEqual(updates)
+})
+
+it('should throw an error updating wrong user', async () => {
+  await expect(
+    update({
+      ...wrongUser,
+      username: 'new name',
+    })
+  ).rejects.toThrow(/user/i)
 })

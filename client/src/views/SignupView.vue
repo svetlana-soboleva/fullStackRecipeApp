@@ -2,7 +2,7 @@
 import { signup } from '../stores/user'
 import { ref } from 'vue'
 import PageForm from '@/components/PageForm.vue'
-import { FwbAlert, FwbButton, FwbInput, FwbSelect, FwbCheckbox } from 'flowbite-vue'
+import { FwbAlert, FwbButton, FwbInput, FwbSelect } from 'flowbite-vue'
 import AlertError from '../components/AlertError.vue'
 
 import { DEFAULT_SERVER_ERROR } from '../consts'
@@ -58,7 +58,6 @@ async function submitSignup() {
         :required="true"
       />
       <FwbInput label="Username" type="text" v-model="userForm.username" :required="true" />
-      <FwbCheckbox v-model="userForm.admin" label="Admin Mode" />
 
       <FwbSelect v-model="userForm.admin" :options="roleOptions" label="Select a role" />
 

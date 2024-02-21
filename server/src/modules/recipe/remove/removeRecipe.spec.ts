@@ -15,3 +15,22 @@ it('removes the recipe', async () => {
   await remove({ id: recipe.id })
   await expect(recipeRepository.count()).resolves.toBe(recipes.length - 1)
 })
+
+it('rejects user that does not own the recipe', async () => {
+  const recipe2 = await recipeRepository.findOneByOrFail({ id: recipes[0].id })
+  const { remove } = categoryRouter.createCaller(
+    authContext({ db }, { id: 999, admin: false })
+  )
+  await expect(remove({ id: recipe2.id })).rejects.toThrow('Admin only')
+})
+
+it('removes recipe as admin', async () => {
+  const recipe = await recipeRepository.findOneByOrFail({ id: recipes[0].id })
+  const { remove } = categoryRouter.createCaller(
+    authContext({ db }, { id: 999, admin: true })
+  )
+  await remove({ id: recipe.id })
+  await expect(
+    recipeRepository.findOneByOrFail({ id: recipes[0].id })
+  ).rejects.toThrow()
+})

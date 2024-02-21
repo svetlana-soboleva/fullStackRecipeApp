@@ -20,6 +20,7 @@ Ingredients: Access ingredient details and explore their use in various recipes.
 
 TypeORM: Utilizes various relationships (ManyToOne, OneToMany, ManyToMany) to model complex database relationships.
 Express.js: A backend framework for handling HTTP requests.
+TRPC (Typed RPC): A typed RPC library used for communication between the client and server.
 Database: Implements a relational database to store recipes, users, categories, steps, and ingredients.
 
 ## Getting Started

@@ -4,7 +4,6 @@ import { authContext } from '@tests/utils/context'
 import setupTest from '@server/entities/tests/setup'
 import stepRouter from '..'
 
-
 it('should save and return a step', async () => {
   const { db, users, categories } = await setupTest()
   const { create } = stepRouter.createCaller(authContext({ db }, users[0]))
@@ -20,4 +19,12 @@ it('should save and return a step', async () => {
     id: expect.any(Number),
   })
   expect(stepCreated.id).not.toEqual(step.id)
+})
+
+it('requires an existing recipe', async () => {
+  const { db, users } = await setupTest()
+  const { create } = stepRouter.createCaller(authContext({ db }, users[0]))
+
+  const step = fakeStep({ recipeId: 9999 })
+  expect(create(step)).rejects.toThrow(/recipe/i)
 })
