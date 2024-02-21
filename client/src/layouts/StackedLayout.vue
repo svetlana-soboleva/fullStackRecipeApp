@@ -20,8 +20,13 @@ const navigation = computed(() =>
 )
 </script>
 
-<template>
-  <FwbNavbar>
+<template >
+  <FwbNavbar >
+    <template #logo>
+      <fwb-navbar-logo alt="Recipe logo" image-url="/images/logo.svg" link="#">
+        Recipe Logo
+      </fwb-navbar-logo>
+    </template>
     <template #default="{ isShowMenu }">
       <FwbNavbar-collapse :isShowMenu="isShowMenu">
         <!-- prettier-ignore -->

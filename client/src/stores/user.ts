@@ -16,7 +16,7 @@ export const authUserId = computed(() =>
 
 export const isLoggedIn = computed(() => !!authToken.value)
 
-export async function login(userLogin: { email: string; password: string }) {
+export async function login(userLogin: { email: string; password: string; username: string }) {
   const { accessToken } = await trpc.user.login.mutate(userLogin)
 
   authToken.value = accessToken

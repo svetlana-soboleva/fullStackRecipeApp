@@ -13,7 +13,8 @@ import { FwbButton } from 'flowbite-vue'
           </h2>
 
           <p class="mt-4 text-gray-500 dark:text-gray-400 lg:max-w-md">
-            Add your favorite recipes, create your own recipes.
+            Craft, Share, Delight! <br />
+            Where creativity blossoms, communities connect, and every meal tells a unique story!
           </p>
 
           <div class="mt-6 flex items-center gap-2">
@@ -21,6 +22,7 @@ import { FwbButton } from 'flowbite-vue'
             <FwbButton
               component="RouterLink"
               tag="router-link"
+              color="green"
               :href="({ name: 'Signup' } as any)"
             >
               Get Started
@@ -44,7 +46,7 @@ import { FwbButton } from 'flowbite-vue'
                 <source srcset="../assets/landing-4.webp" type="image/webp" /> -->
                 <source srcset="../assets/landing.jpeg" type="image/jpeg" />
                 <img
-                  class="h-64 w-full rounded-md object-cover object-center shadow"
+                  class="h-96 w-full rounded-md object-cover object-center shadow"
                   src="../assets/landing.jpg"
                   alt=""
                 />

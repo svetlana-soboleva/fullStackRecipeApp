@@ -6,7 +6,7 @@ import { getStoredAccessToken } from '@/utils/auth'
 import SuperJSON from 'superjson'
 
 export const trpc = createTRPCProxyClient<AppRouter>({
-  // auto convert Date <-> string
+
   transformer: SuperJSON,
 
   links: [

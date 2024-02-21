@@ -3,6 +3,7 @@ import { Column, Entity, PrimaryGeneratedColumn, OneToMany } from 'typeorm'
 import { z } from 'zod'
 import { Recipe } from '.'
 
+
 @Entity()
 export class Category {
   @PrimaryGeneratedColumn()

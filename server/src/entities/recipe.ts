@@ -58,7 +58,7 @@ export class Recipe {
   @Column({ type: 'enum', enum: ['public', 'private'], default: 'public' })
   visibility: string
 
-  @OneToMany(() => Step, (step) => step.recipe, { cascade: ['insert'] })
+  @OneToMany(() => Step, (step) => step.recipe)
 
   steps: Step[]
 }

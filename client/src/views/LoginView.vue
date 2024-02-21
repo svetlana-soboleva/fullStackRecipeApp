@@ -43,7 +43,7 @@ async function submitLogin() {
       </FwbAlert>
 
       <div class="grid">
-        <FwbButton color="default" type="submit" size="xl">Log in</FwbButton>
+        <FwbButton color="green" type="submit" size="xl">Log in</FwbButton>
       </div>
     </template>
 
