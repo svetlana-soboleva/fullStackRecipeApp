@@ -53,7 +53,7 @@ async function submitLogin() {
         {{ ' ' }}
         <RouterLink
           :to="{ name: 'Signup' }"
-          class="font-semibold leading-6 text-indigo-600 hover:text-indigo-500"
+          class="font-semibold leading-6 text-teal-600 hover:text-teal-500"
           >Sign up</RouterLink
         >
       </FwbAlert>

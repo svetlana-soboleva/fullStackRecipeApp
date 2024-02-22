@@ -52,9 +52,6 @@ export class Recipe {
   @Column('timestamp with time zone', { nullable: true })
   created_at: Date | null
 
-  @Column('timestamp with time zone', { nullable: true })
-  updated_at: Date | null
-
   @Column({ type: 'enum', enum: ['public', 'private'], default: 'public' })
   visibility: string
 
@@ -80,7 +77,6 @@ export const recipeSchema = validates<RecipeBare>().with({
   video_link: z.string(),
   picture_link: z.string(),
   created_at: z.date().nullable(),
-  updated_at: z.date().nullable(),
   visibility: z.string(),
 })
 

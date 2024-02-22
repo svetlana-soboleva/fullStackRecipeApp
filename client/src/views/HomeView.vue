@@ -44,9 +44,9 @@ import { FwbButton } from 'flowbite-vue'
               <picture>
                 <!--  <source srcset="../assets/landing-4.avif" type="image/avif" />
                 <source srcset="../assets/landing-4.webp" type="image/webp" /> -->
-                <source srcset="../assets/landing.jpeg" type="image/jpeg" />
+                <source srcset="../assets/landing1.jpeg" type="image/jpeg" />
                 <img
-                  class="h-96 w-full rounded-md object-cover object-center shadow"
+                  class="h-5/6 w-full rounded-md object-cover object-center shadow"
                   src="../assets/landing.jpg"
                   alt=""
                 />

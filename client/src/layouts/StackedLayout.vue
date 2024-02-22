@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { computed } from 'vue'
 import { useRoute } from 'vue-router'
-import { FwbNavbar, FwbNavbarCollapse, FwbNavbarLink } from 'flowbite-vue'
+import { FwbNavbar, FwbNavbarCollapse, FwbNavbarLink, FwbNavbarLogo } from 'flowbite-vue'
 
 const { links } = defineProps<{
   links: {
@@ -20,11 +20,11 @@ const navigation = computed(() =>
 )
 </script>
 
-<template >
-  <FwbNavbar >
-    <template #logo>
-      <fwb-navbar-logo alt="Recipe logo" image-url="/images/logo.svg" link="#">
-        Recipe Logo
+<template>
+  <FwbNavbar>
+    <template  #logo>
+      <fwb-navbar-logo alt="Fork" image-url="src/assets/logo1.svg" link="#">
+        CookiEat
       </fwb-navbar-logo>
     </template>
     <template #default="{ isShowMenu }">

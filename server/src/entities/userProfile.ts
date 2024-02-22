@@ -1,5 +1,10 @@
 import { validates } from '@server/utils/validation'
-import { Column, Entity, PrimaryGeneratedColumn, OneToOne } from 'typeorm'
+import {
+  Column,
+  Entity,
+  PrimaryGeneratedColumn,
+  OneToOne,
+} from 'typeorm'
 import { z } from 'zod'
 import { User } from './user'
 
@@ -11,7 +16,7 @@ export class UserProfile {
   @Column('integer')
   userId: number
 
-  @OneToOne(() => User)
+  @OneToOne(() => User, { onDelete: 'CASCADE' })
   user: User
 
   @Column('text', { nullable: true })

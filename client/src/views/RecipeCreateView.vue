@@ -9,16 +9,13 @@ const router = useRouter()
 
 const recipeForm = ref({
   title: '',
+  category: '',
   description: '',
-  instructions: '',
-  ingredients: '',
   cooking_time: '',
   servings: '',
   video_link: '',
   picture_link: '',
-  //hardcoded
   created_at: new Date(),
-  updated_at: new Date(),
   visibility: '',
 })
 
@@ -63,28 +60,6 @@ async function createRecipe() {
           />
         </div>
 
-        <!-- Instructions -->
-        <div class="mt-6">
-          <FwbInput
-            aria-label="Instructions"
-            v-model="recipeForm.instructions"
-            label="Instructions"
-            placeholder="Add instructions..."
-            type="textarea"
-            rows="8"
-          />
-        </div>
-        <!-- Ingredients -->
-        <div class="mt-6">
-          <FwbInput
-            aria-label="Ingredients"
-            v-model="recipeForm.ingredients"
-            label="Ingredients"
-            placeholder="Add ingredients..."
-            type="textarea"
-            rows="8"
-          />
-        </div>
         <!-- Cooking Time -->
         <div class="mt-6">
           <FwbInput
