@@ -2,7 +2,8 @@
 import { trpc } from '@/trpc'
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
-import { FwbButton, FwbHeading, FwbInput } from 'flowbite-vue'
+import { FwbButton, FwbHeading } from 'flowbite-vue'
+import MultiStepForm from '@/components/MultiStepForm.vue'
 import AlertError from '@/components/AlertError.vue'
 
 const router = useRouter()
@@ -33,87 +34,18 @@ async function createRecipe() {
 </script>
 
 <template>
-  <div class="flex items-center justify-between">
-    <form aria-label="Project" @submit.prevent="createRecipe">
+  {{ recipeForm }}
+
+  <div class="flex justify-center">
+    <form aria-label="Recipe" @submit.prevent="createRecipe">
+      <MultiStepForm />
       <div class="space-y-6">
-        <FwbHeading tag="h4">Create a new recipe</FwbHeading>
-
-        <!-- Recipe Name -->
-        <div class="mt-6">
-          <FwbInput
-            aria-label="Recipe name"
-            v-model="recipeForm.title"
-            :minlength="2"
-            label="Recipe name"
-            placeholder="My recipe"
-          />
-        </div>
-        <!-- Description -->
-        <div class="mt-6">
-          <FwbInput
-            aria-label="Description"
-            v-model="recipeForm.description"
-            label="Description"
-            placeholder="Add a description..."
-            type="textarea"
-            rows="6"
-          />
-        </div>
-
-        <!-- Cooking Time -->
-        <div class="mt-6">
-          <FwbInput
-            aria-label="Cooking Time"
-            v-model="recipeForm.cooking_time"
-            label="Cooking Time (minutes)"
-            placeholder="e.g., 30"
-            type="number"
-          />
-        </div>
-
-        <!-- Servings -->
-        <div class="mt-6">
-          <FwbInput
-            aria-label="Servings"
-            v-model="recipeForm.servings"
-            label="Servings"
-            placeholder="e.g., 4"
-            type="number"
-          />
-        </div>
-
-        <!-- Video Link -->
-        <div class="mt-6">
-          <FwbInput
-            aria-label="Video Link"
-            v-model="recipeForm.video_link"
-            label="Video Link"
-            placeholder="Add a video link..."
-          />
-        </div>
-
-        <!-- Picture Link -->
-        <div class="mt-6">
-          <FwbInput
-            aria-label="Picture Link"
-            v-model="recipeForm.picture_link"
-            label="Picture Link"
-            placeholder="Add a picture link..."
-          />
-        </div>
-
-        <div class="mt-6">
-          <label for="visibility">Visibility</label>
-          <select v-model="recipeForm.visibility" id="visibility">
-            <option value="public">Public</option>
-            <option value="private">Private</option>
-          </select>
-        </div>
+        <FwbHeading tag="h4">New recipe</FwbHeading>
       </div>
 
       <AlertError :message="errorMessage" />
 
-      <div class="mt-6 grid grid-cols-2 items-center gap-3">
+      <div class="mt-8 grid grid-cols-2 items-center gap-3">
         <FwbButton type="submit">Save</FwbButton>
         <RouterLink
           class="text-center text-sm font-semibold leading-6 text-indigo-600 hover:text-indigo-500"

@@ -17,6 +17,9 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
+    "@formkit/addons": "^1.5.9",
+    "@formkit/themes": "^1.5.9",
+    "@formkit/vue": "^1.5.9",
     "@headlessui/vue": "^1.7.16",
     "@heroicons/vue": "^2.0.18",
     "@trpc/client": "^10.45.1",
