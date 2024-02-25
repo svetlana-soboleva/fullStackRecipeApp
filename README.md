@@ -31,10 +31,12 @@ Database: Implements a relational database to store recipes, users, categories.
 3. Setup `.env` files in `server` based on `.env.example` files.
 
 ```bash
-Note: This project focuses on the backend functionality, and there is currently no frontend. The backend provides a robust foundation, and frontend development may be considered in the future.
+Note: This project focuses on the backend functionality, and there is currently few frontend. The backend provides a robust foundation, and frontend development is considered in the future.
 ```
 
 ## Tests
+
+Go to cd server
 
 ```bash
 npm run test
