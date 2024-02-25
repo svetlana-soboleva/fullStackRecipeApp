@@ -1,5 +1,5 @@
-import { Step, StepBare, stepSchema } from '@server/entities/step'
-import { recipeIdOwnerProcedure } from '@server/trpc/recipeOwnerProcedure'
+import { recipeIdOwnerProcedure } from '@server/trpc/recipeIdOwnerProcedure'
+import { type StepBare, Step, stepSchema } from '@server/entities/step'
 
 export default recipeIdOwnerProcedure
   .input(
@@ -12,7 +12,8 @@ export default recipeIdOwnerProcedure
       where: {
         recipeId,
       },
-      order: { id: 'DESC' },
+      order: { id: 'ASC' },
     })) as StepBare[]
+
     return steps
   })

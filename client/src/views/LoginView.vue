@@ -1,9 +1,10 @@
 <script lang="ts" setup>
+import { login } from '@/stores/user'
 import { ref } from 'vue'
 import PageForm from '@/components/PageForm.vue'
 import { FwbAlert, FwbButton, FwbInput } from 'flowbite-vue'
 import { useRouter } from 'vue-router'
-import { login } from '../stores/user'
+import useErrorMessage from '@/composables/useErrorMessage'
 
 const router = useRouter()
 
@@ -12,16 +13,11 @@ const userForm = ref({
   password: '',
 })
 
-const errorMessage = ref('')
+const [submitLogin, errorMessage] = useErrorMessage(async () => {
+  await login(userForm.value)
 
-async function submitLogin() {
-  try {
-    await login(userForm.value)
-    router.push({ name: 'Dashboard' })
-  } catch (error: any) {
-    errorMessage.value = error.message || 'An unexpected error occurred.'
-  }
-}
+  router.push({ name: 'Dashboard' })
+})
 </script>
 
 <template>
@@ -38,12 +34,13 @@ async function submitLogin() {
         v-model="userForm.password"
         :required="true"
       />
+
       <FwbAlert v-if="errorMessage" data-testid="errorMessage" type="danger">
         {{ errorMessage }}
       </FwbAlert>
 
       <div class="grid">
-        <FwbButton color="green" type="submit" size="xl">Log in</FwbButton>
+        <FwbButton color="default" type="submit" size="xl">Log in</FwbButton>
       </div>
     </template>
 
@@ -53,7 +50,7 @@ async function submitLogin() {
         {{ ' ' }}
         <RouterLink
           :to="{ name: 'Signup' }"
-          class="font-semibold leading-6 text-teal-600 hover:text-teal-500"
+          class="font-semibold leading-6 text-indigo-600 hover:text-indigo-500"
           >Sign up</RouterLink
         >
       </FwbAlert>

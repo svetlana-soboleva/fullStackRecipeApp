@@ -26,7 +26,6 @@ export function buildAuthenticatedProcedure(verify: VerifyToken) {
     if (ctx.authUser) {
       return next({
         ctx: {
-
           authUser: ctx.authUser,
         },
       })
@@ -38,7 +37,6 @@ export function buildAuthenticatedProcedure(verify: VerifyToken) {
         message: 'Missing Express request object',
       })
     }
-
     const token = ctx.req.header('Authorization')?.replace('Bearer ', '')
 
     if (!token) {
@@ -65,4 +63,3 @@ export function buildAuthenticatedProcedure(verify: VerifyToken) {
     })
   })
 }
-

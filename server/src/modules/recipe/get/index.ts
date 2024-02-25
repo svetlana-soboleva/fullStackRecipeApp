@@ -15,7 +15,7 @@ export default authenticatedProcedure
         message: 'Recipe was not found',
       })
     }
-    if (recipe.userId !== authUser.id && !authUser.admin) {
+    if (recipe.userId !== authUser.id) {
       throw new TRPCError({
         code: 'FORBIDDEN',
         message: 'You are not allowed to access this recipe',
@@ -23,3 +23,4 @@ export default authenticatedProcedure
     }
     return recipe
   })
+

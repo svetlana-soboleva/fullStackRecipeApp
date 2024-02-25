@@ -1,11 +1,10 @@
 import { apiOrigin, apiPath } from './config'
 import { createTRPCProxyClient, httpBatchLink } from '@trpc/client'
 import type { AppRouter } from '@mono/server/src/shared/trpc'
+import { fakeUser } from './fakeData'
 import type { Page } from '@playwright/test'
 import { superjson } from './superjson/common'
-import { fakeUser } from './fakeData'
 
-// Playwright might have incorrectly typed `trpc` as `any`.
 const trpc = createTRPCProxyClient<AppRouter>({
   transformer: superjson,
   links: [
@@ -15,22 +14,35 @@ const trpc = createTRPCProxyClient<AppRouter>({
   ],
 })
 
-// You could add some helpers here to make it easier to test your API.
-// Instead of going through the same signup/login steps for every test,
-// you could create and login a fresh user for every test. If it is done
-// through API, it will be much faster than going through the UI.
-// As long as you have one flow that tests the UI signup/login, you can
-// start relying on API for some more cumbersome E2E tasks.
-// There are some alternative strategies, such as mocking the API or using
-// a seeded database. However, that generally requires more front-to-back
-// coordination and is more brittle to changes in the API.
-
+/**
+ * Logs in a new user by signing them up and logging them in with the provided
+ * user login information.
+ */
 export async function loginNewUser(page: Page, userLogin = fakeUser()) {
-  // 1. Signup
-  // 2. Login, get access token
-  // 3. Go to any page to make sure we have access to page and localStorage
-  // 4. Set access token in localStorage
-  // 5. Set the access token in localStorage. This deals with implementation
-  // details, so it is not ideal, but as long as we isolate it to a single
-  // place, it should be fine.
+  try {
+    await trpc.user.signup.mutate(userLogin)
+  } catch (error) {
+    // ignore cases when user already exists
+  }
+
+  const { accessToken } = await trpc.user.login.mutate(userLogin)
+
+  await page.goto('/')
+
+  // unfortunate that we are dealing with page internals and
+  // implementation details here, but as long as we make sure that
+  // this logic is in one place and it does not spill into tests,
+  // we should be fine.
+  await page.evaluate(
+    ({ accessToken }) => {
+      localStorage.setItem('token', accessToken)
+    },
+    { accessToken }
+  )
+
+  // returning the only thing that was generated inside (fakeUser)
+  // in case we want to make assertions based on generated user data
+  return userLogin
 }
+
+export const reportBug = trpc.bug.report.mutate

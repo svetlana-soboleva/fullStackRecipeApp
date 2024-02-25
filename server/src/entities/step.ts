@@ -3,18 +3,22 @@ import {
   Column,
   Entity,
   PrimaryGeneratedColumn,
+  JoinColumn,
   ManyToOne,
-  OneToMany,
-  JoinTable,
 } from 'typeorm'
 import { z } from 'zod'
 import { Recipe } from './recipe'
-import { Ingredient } from './ingredient'
 
 @Entity()
 export class Step {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn('increment')
   id: number
+
+  @Column('text')
+  name: string
+
+  @Column('text')
+  ingredients: string
 
   @Column('text')
   description: string
@@ -22,25 +26,23 @@ export class Step {
   @Column('integer')
   recipeId: number
 
-  @ManyToOne(() => Recipe, (recipe) => recipe.steps, {
-    onDelete: 'CASCADE',
-    orphanedRowAction: 'delete',
-  })
+  @ManyToOne(() => Recipe, (recipe) => recipe.steps)
+  @JoinColumn()
   recipe: Recipe
-
-  @OneToMany(() => Ingredient, (ingredient) => ingredient.step, {
-    eager: true,
-  })
-  @JoinTable()
-  ingredients: Ingredient[]
 }
 
-export type StepBare = Omit<Step, 'ingredients' | 'recipe'>
+export type StepBare = Omit<Step, 'recipe'>
+
 export const stepSchema = validates<StepBare>().with({
   id: z.number().int().positive(),
-  description: z.string().min(5),
+  name: z.string().trim(),
   recipeId: z.number().positive(),
+  ingredients: z.string(),
+  description: z.string(),
 })
 
-export const stepInsertSchema = stepSchema.omit({ id: true })
+export const stepInsertSchema = stepSchema.omit({
+  id: true,
+})
+
 export type StepInsert = z.infer<typeof stepInsertSchema>

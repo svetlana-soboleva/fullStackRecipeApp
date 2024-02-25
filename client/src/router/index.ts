@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import DashboardLayout from '@/layouts/DashboardLayout.vue'
+import { authenticate } from './guards'
 import HomeLayout from '@/layouts/HomeLayout.vue'
 
 const router = createRouter({
@@ -9,6 +10,7 @@ const router = createRouter({
     {
       path: '/dashboard',
       component: DashboardLayout,
+      beforeEnter: [authenticate],
       children: [
         {
           path: '',
@@ -19,6 +21,16 @@ const router = createRouter({
           path: 'recipe/create',
           name: 'RecipeCreate',
           component: () => import('../views/RecipeCreateView.vue'),
+        },
+        {
+          path: 'recipe/:id/step/create',
+          name: 'StepCreate',
+          component: () => import('../views/StepCreateView.vue'),
+        },
+        {
+          path: 'recipe/:id',
+          name: 'Recipe',
+          component: () => import('../views/RecipeView.vue'),
         },
       ],
     },

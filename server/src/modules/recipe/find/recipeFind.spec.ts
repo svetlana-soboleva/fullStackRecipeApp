@@ -1,9 +1,9 @@
 import { authContext } from '@tests/utils/context'
-import { Category, Recipe, User } from '@server/entities'
+import { Recipe, User, Category } from '@server/entities'
 import {
-  fakeCategory,
   fakeRecipe,
   fakeUser,
+  fakeCategory,
 } from '@server/entities/tests/fakes'
 import { createTestDatabase } from '@tests/utils/database'
 import router from '..'

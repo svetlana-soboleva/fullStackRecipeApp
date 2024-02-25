@@ -13,15 +13,13 @@ The idea for this project originated from my own experiences in the culinary wor
 Recipes: Browse a collection of recipes with detailed instructions and ingredients.
 Categories: Organize recipes into categories for easy navigation.
 Users: Create an account, log in, and contribute recipes to the community.
-Steps: Explore recipes step by step, including detailed descriptions and associated ingredients.
-Ingredients: Access ingredient details and explore their use in various recipes.
 
 ## Technology Stack
 
-TypeORM: Utilizes various relationships (ManyToOne, OneToMany, ManyToMany) to model complex database relationships.
+TypeORM: Utilizes various relationships (ManyToOne, OneToMany) to model complex database relationships.
 Express.js: A backend framework for handling HTTP requests.
 TRPC (Typed RPC): A typed RPC library used for communication between the client and server.
-Database: Implements a relational database to store recipes, users, categories, steps, and ingredients.
+Database: Implements a relational database to store recipes, users, categories.
 
 ## Getting Started
 

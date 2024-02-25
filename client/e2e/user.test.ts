@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test'
+import { loginNewUser } from 'utils/api'
 import { fakeUser } from 'utils/fakeData'
 
 const { email, password } = fakeUser()
@@ -28,8 +29,7 @@ test.describe.serial('signup and login sequence', () => {
     await expect(successMessage).toBeVisible()
   })
 
-  // unskip this test to start working on the real login flow
-  test.skip('visitor can not access dashboard before login', async ({ page }) => {
+  test('visitor can not access dashboard before login', async ({ page }) => {
     await page.goto('/dashboard')
 
     // user is redirected to login page
@@ -55,4 +55,30 @@ test.describe.serial('signup and login sequence', () => {
     await page.reload()
     await expect(dashboardLink).toBeVisible()
   })
+})
+
+// Running logout test in isolation.
+test('visitor can logout', async ({ page }) => {
+  // Given (ARRANGE)
+  await loginNewUser(page)
+
+  await page.goto('/dashboard')
+  const logoutLink = page.getByRole('link', { name: 'Logout' })
+
+  // When (ACT)
+  await logoutLink.click()
+
+  // Then (ASSERT)
+  await expect(logoutLink).toBeHidden()
+
+  // Ensure that we are redirected to the login page.
+  // This test would break if we changed the login page URL,
+  // but this is a signifcant change that we would want to
+  // be aware of.
+  await expect(page).toHaveURL('/login')
+
+  // Refresh the page to make sure that the user is still logged out.
+  await page.goto('/dashboard')
+  await expect(logoutLink).toBeHidden()
+  await expect(page).toHaveURL('/login')
 })

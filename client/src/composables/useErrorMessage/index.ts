@@ -9,7 +9,7 @@ import { ref, type Ref } from 'vue'
  * a `Ref` object that holds an error message string.
  */
 export default function useErrorMessage<
-  Args extends any[],
+  Args extends unknown[],
   Return,
   T extends (...args: Args) => Return,
 >(fn: T): [T, Ref<string>] {

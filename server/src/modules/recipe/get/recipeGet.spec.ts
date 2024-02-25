@@ -7,10 +7,10 @@ import recipeRouter from '..'
 const { db, recipes } = await setupTest()
 const recipeRepository = db.getRepository(Recipe)
 
-it('should return the recipe if found and user has access', async () => {
+it('should return the recipe if found', async () => {
   const recipe = await recipeRepository.findOneByOrFail({ id: recipes[1].id })
   const { get } = recipeRouter.createCaller(
-    authContext({ db }, { id: recipe.userId, admin: false })
+    authContext({ db }, { id: recipe.userId})
   )
   const result = await get(recipe.id)
 
@@ -20,7 +20,7 @@ it('should return the recipe if found and user has access', async () => {
 it('should throw an error if the user has no access', async () => {
   const recipe = await recipeRepository.findOneByOrFail({ id: recipes[1].id })
   const { get } = recipeRouter.createCaller(
-    authContext({ db }, { id: 4, admin: false })
+    authContext({ db }, { id: 999 })
   )
   const error = await get(recipe.id).catch((err) => err)
   expect(error).toBeInstanceOf(TRPCError)
@@ -28,20 +28,10 @@ it('should throw an error if the user has no access', async () => {
   expect(error.message).toBe('You are not allowed to access this recipe')
 })
 
-it('should return a recipe if the user is admin', async () => {
-  const recipe = await recipeRepository.findOneByOrFail({ id: recipes[1].id })
-  const { get } = recipeRouter.createCaller(
-    authContext({ db }, { id: 1111, admin: true })
-  )
-  const result = await get(recipe.id)
-
-  expect(result).toMatchObject(recipe)
-})
-
 it('should throw an error if the recipe is not found', async () => {
   const recipe = await recipeRepository.findOneByOrFail({ id: recipes[1].id })
   const { get } = recipeRouter.createCaller(
-    authContext({ db }, { id: recipe.userId, admin: true })
+    authContext({ db }, { id: recipe.userId })
   )
   const error = await get(101010).catch((err) => err)
   expect(error).toBeInstanceOf(TRPCError)

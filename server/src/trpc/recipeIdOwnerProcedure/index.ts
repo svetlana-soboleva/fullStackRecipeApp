@@ -1,7 +1,7 @@
 import { TRPCError } from '@trpc/server'
 import z from 'zod'
 import { Recipe } from '@server/entities'
-import { authenticatedProcedure } from '../authenticatedProcedure'
+import { authenticatedProcedure } from '@server/trpc/authenticatedProcedure'
 import provideRepos from '../provideRepos'
 
 export const recipeIdOwnerProcedure = authenticatedProcedure
@@ -20,17 +20,20 @@ export const recipeIdOwnerProcedure = authenticatedProcedure
         id: recipeId,
       },
     })
+
     if (!recipe) {
       throw new TRPCError({
         code: 'NOT_FOUND',
         message: 'Recipe not found',
       })
     }
+
     if (recipe.userId !== authUser.id) {
       throw new TRPCError({
         code: 'UNAUTHORIZED',
         message: 'Recipe does not belong to the user',
       })
     }
+
     return next()
   })

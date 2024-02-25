@@ -2,11 +2,10 @@ import { validates } from '@server/utils/validation'
 import {
   Column,
   Entity,
+  JoinColumn,
   ManyToOne,
   PrimaryGeneratedColumn,
   OneToMany,
-  JoinColumn,
-  
 } from 'typeorm'
 import { z } from 'zod'
 import { User } from './user'
@@ -15,14 +14,11 @@ import { Step } from './step'
 
 @Entity()
 export class Recipe {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn('increment')
   id: number
 
-  @Column('integer')
-  userId: number
-
   @Column('text')
-  title: string
+  tittle: string
 
   @Column('text')
   categoryId: number
@@ -31,49 +27,48 @@ export class Recipe {
   @JoinColumn()
   category: Category
 
+  @Column({ type: 'text' })
+  cooking_time: string
+
+  @Column({ type: 'text' })
+  servings: string
+
   @Column('text')
-  description: string
-
-  @Column({ type: 'int' })
-  cooking_time: number
-
-  @Column({ type: 'int' })
-  servings: number
-
-  @ManyToOne(() => User)
-  user: User
-
-  @Column('text', { nullable: true })
   video_link: string
 
-  @Column('text', { nullable: true })
+  @Column('text')
   picture_link: string
 
-  @Column('timestamp with time zone', { nullable: true })
+  @Column('timestamp with time zone')
   created_at: Date | null
 
-  @Column({ type: 'enum', enum: ['public', 'private'], default: 'public' })
+  @Column({ type: 'enum', enum: ['Public', 'Private'], default: 'Public' })
   visibility: string
 
-  @OneToMany(() => Step, (step) => step.recipe)
+  @Column('integer')
+  userId: number
 
+  @ManyToOne(() => User, (user) => user.recipes, { onDelete: 'CASCADE' })
+  @JoinColumn()
+  user: User
+
+  @OneToMany(() => Step, (step) => step.recipe, { onDelete: 'CASCADE' })
   steps: Step[]
 }
 
-export type RecipeBare = Omit<Recipe, 'user' | 'steps' | 'category'>
+export type RecipeBare = Omit<Recipe, 'user' | 'category' | 'steps'>
 
 export const recipeSchema = validates<RecipeBare>().with({
   id: z.number().int().positive(),
   userId: z.number().positive(),
-  title: z
+  tittle: z
     .string()
     .trim()
     .min(2, 'Recipe title must be at least 2 characters long')
     .max(100),
   categoryId: z.number(),
-  description: z.string(),
-  cooking_time: z.number().int().positive(),
-  servings: z.number().int().positive(),
+  cooking_time: z.string(),
+  servings: z.string(),
   video_link: z.string(),
   picture_link: z.string(),
   created_at: z.date().nullable(),
@@ -82,6 +77,6 @@ export const recipeSchema = validates<RecipeBare>().with({
 
 export const recipeInsertSchema = recipeSchema.omit({
   id: true,
-  updated_at: true,
+  created_at: true,
 })
 export type RecipeInsert = z.infer<typeof recipeInsertSchema>

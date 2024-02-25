@@ -1,9 +1,9 @@
-import userRouter from '..'
+// import { createMockDatabase } from '@tests/utils/database'
+import usersRouter from '..'
 
 const userSeed = {
   id: 12345,
   email: 'existing@user.com',
-  admin: false,
   password: '$2b$10$sD53fzWIQBjXWfSDzuwmMOyY1ZAygLpRZlLxxPhcNG5r9BFWrNaDC',
 }
 
@@ -14,7 +14,16 @@ const db = {
   }),
 }
 
-const { login } = userRouter.createCaller({ db } as any)
+// The same mocked db, but with a more declarative utility function,
+// which is easier to work with if we would have multiple repositories.
+// const db = createMockDatabase({
+//   User: {
+//     findOne: ({ where: { email } }: any) =>
+//       email === userSeed.email ? userSeed : null,
+//   },
+// })
+
+const { login } = usersRouter.createCaller({ db } as any)
 
 const PASSWORD_CORRECT = 'password.123'
 
@@ -38,7 +47,7 @@ it('should throw an error for non-existant user', async () => {
 })
 
 it('should throw an error for incorrect password', async () => {
-  await expect(
+  expect(
     login({
       email: userSeed.email,
       password: 'password.123!',

@@ -5,9 +5,9 @@ import { TRPCError } from '@trpc/server'
 
 export default publicProcedure
   .input(stepInsertSchema)
-  .mutation(async ({ input: stepData, ctx: { db } }) => {
+  .mutation(async ({ input: step, ctx: { db } }) => {
     const recipe = await db.getRepository(Recipe).findOneBy({
-      id: stepData.recipeId,
+      id: step.recipeId,
     })
 
     if (!recipe) {
@@ -17,6 +17,7 @@ export default publicProcedure
       })
     }
 
-    const stepCreated = await db.getRepository(Step).save(stepData)
+    const stepCreated = await db.getRepository(Step).save(step)
+
     return stepCreated
   })

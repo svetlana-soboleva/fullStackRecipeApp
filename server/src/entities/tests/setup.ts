@@ -2,10 +2,9 @@ import { createTestDatabase } from '@tests/utils/database'
 import {
   fakeUser,
   fakeRecipe,
-  fakeStep,
   fakeCategory,
 } from '@server/entities/tests/fakes'
-import { Category, Recipe, Step, User } from '@server/entities'
+import { Category, Recipe, User } from '@server/entities'
 
 export default async function setupTest() {
   const db = await createTestDatabase()
@@ -25,15 +24,10 @@ export default async function setupTest() {
       fakeRecipe({ userId: users[0].id, categoryId: categories[1].id }),
     ])
 
-  const step1 = await db
-    .getRepository(Step)
-    .save([fakeStep({ recipeId: recipes[0].id })])
-
   return {
     db,
     users,
     categories,
     recipes,
-    step1,
   }
 }

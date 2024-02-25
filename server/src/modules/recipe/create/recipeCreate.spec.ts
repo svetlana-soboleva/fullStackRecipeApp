@@ -1,39 +1,37 @@
 import { authContext } from '@tests/utils/context'
-import { fakeCategory, fakeUser } from '@server/entities/tests/fakes'
+import { fakeUser, fakeCategory } from '@server/entities/tests/fakes'
 import { createTestDatabase } from '@tests/utils/database'
-import { Category, User } from '@server/entities'
-import recipeRouter from '..'
+import { User, Category } from '@server/entities'
+import projectRouter from '..'
 
-it('should create a recipe', async () => {
+it('should create a persisted project', async () => {
+  // ARRANGE
   const db = await createTestDatabase()
   const user = await db.getRepository(User).save(fakeUser())
-  const { create } = recipeRouter.createCaller(authContext({ db }, user))
+  const { create } = projectRouter.createCaller(authContext({ db }, user))
 
   const category = await db.getRepository(Category).save(fakeCategory())
 
   const recipeCreated = await create({
-    title: 'My recipe',
+    tittle: 'My recipe',
     categoryId: category.id,
-    description: 'Easy to make',
-    cooking_time: 15,
-    servings: 3,
+    cooking_time: '15',
+    servings: '3',
     video_link: 'http://',
     picture_link: 'http://',
-    created_at: null,
-    visibility: 'public',
+    visibility: 'Public',
   })
 
   expect(recipeCreated).toMatchObject({
     id: expect.any(Number),
     userId: user.id,
-    title: 'My recipe',
+    tittle: 'My recipe',
     categoryId: category.id,
-    description: 'Easy to make',
-    cooking_time: 15,
-    servings: 3,
+    cooking_time: '15',
+    servings: '3',
     video_link: 'http://',
     picture_link: 'http://',
-    created_at: null,
-    visibility: 'public',
+    created_at: expect.any(Date),
+    visibility: 'Public',
   })
 })

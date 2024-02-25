@@ -1,21 +1,14 @@
-import { Recipe } from '@server/entities'
-import { recipeSchema } from '@server/entities/recipe'
-import { publicProcedure } from '@server/trpc'
+import { Recipe, type RecipeBare } from '@server/entities/recipe'
+import { authenticatedProcedure } from '@server/trpc/authenticatedProcedure'
 
-export default publicProcedure
-  .input(
-    recipeSchema.pick({
-      categoryId: true,
-    })
-  )
-  .query(async ({ input: { categoryId }, ctx: { db } }) => {
-    const recipes = await db.getRepository(Recipe).find({
-      where: {
-        categoryId,
-        visibility: 'public',
-      },
-      relations: ['steps'],
-    })
+export default authenticatedProcedure.query(
+  async ({ ctx: { authUser, db } }) => {
+    const userId = authUser.id
+    const recipes = (await db.getRepository(Recipe).find({
+      where: { userId },
+      order: { id: 'ASC' },
+    })) as RecipeBare[]
 
     return recipes
-  })
+  }
+)

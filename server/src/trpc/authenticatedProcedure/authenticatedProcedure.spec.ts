@@ -13,10 +13,11 @@ vi.mock('jsonwebtoken', () => ({
     verify: (token: string) => {
       if (token !== VALID_TOKEN) throw new Error('Invalid token')
 
-      return { user: { id: 2, email: 'valid@email.com', admin: false } }
+      return { user: { id: 2, email: 'valid@email.com' } }
     },
   },
 }))
+
 
 const db = {} as any
 const authenticated = routes.createCaller(authContext({ db }))
@@ -44,7 +45,6 @@ it('should throw an error if user is not logged in', async () => {
   const unauthenticated = routes.createCaller(requestContext({ db }))
 
   await expect(unauthenticated.testCall()).rejects.toThrow(
-    // any authentication-like error
     /login|log in|logged in|authenticate|unauthorized/i
   )
 })

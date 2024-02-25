@@ -6,7 +6,9 @@
     "cypress.config.*",
     "nightwatch.conf.*",
     "playwright.config.*",
-    "postcss.config.*"
+    "postcss.config.*",
+    "formkit.config.ts",
+    "formkit.theme.ts"
   ],
   "compilerOptions": {
     "composite": true,
