@@ -26,7 +26,7 @@ export class Step {
   @Column('integer')
   recipeId: number
 
-  @ManyToOne(() => Recipe, (recipe) => recipe.steps)
+  @ManyToOne(() => Recipe, (recipe) => recipe.steps, { onDelete: 'CASCADE' })
   @JoinColumn()
   recipe: Recipe
 }

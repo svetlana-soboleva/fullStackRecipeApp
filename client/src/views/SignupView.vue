@@ -54,7 +54,7 @@ async function submitSignup() {
       </AlertError>
 
       <div class="grid">
-        <FwbButton color="default" type="submit" size="xl">Sign up</FwbButton>
+        <FwbButton color="green" type="submit" size="xl">Sign up</FwbButton>
       </div>
     </template>
 

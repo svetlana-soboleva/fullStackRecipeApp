@@ -5,6 +5,7 @@ import { useRouter } from 'vue-router'
 import AlertError from '@/components/AlertError.vue'
 import { FwbButton } from 'flowbite-vue'
 import { ref } from 'vue'
+import { type StepBare } from '@mono/server/src/shared/entities'
 
 const route = useRoute()
 const router = useRouter()
@@ -16,12 +17,13 @@ const steps = ref([{ name: '', ingredients: '', description: '' }])
 async function createStep() {
   try {
     for (const singleStep of steps.value) {
-      await trpc.step.create.mutate({
+      ;(await trpc.step.create.mutate({
         ...singleStep,
         recipeId,
-      })
+      })) as StepBare
     }
-
+    console.log('recipeId:', recipeId)
+    console.log('steps.value:', steps.value)
     router.push({ name: 'Dashboard' })
   } catch (error: any) {
     errorMessage.value = error.message || 'An unexpected error occurred.'
@@ -30,7 +32,6 @@ async function createStep() {
 </script>
 
 <template>
-  {{ steps }}
   <form aria-label="Recipe" @submit.prevent="createStep">
     <FormKit type="list" v-model="steps" :value="[{}]" dynamic #default="{ items, node, value }">
       <FormKit type="group" v-for="(item, index) in items" :key="item" :index="index">
@@ -42,7 +43,7 @@ async function createStep() {
 
           <button
             type="button"
-            @click="() => node.input(value.filter((_, i) => i !== index))"
+            @click="() => node.input(value.filter((_: any, i: number) => i !== index))"
             class="border border-red-500 p-3 text-red-500"
           >
             - Remove
@@ -57,8 +58,7 @@ async function createStep() {
       >
         + Add another step
       </button>
-
-      <pre wrap>{{ value }}</pre>
+      <!--     <pre wrap>{{ value }}</pre> -->
     </FormKit>
     <AlertError :message="errorMessage" />
     <div class="mt-8 grid grid-cols-2 items-center gap-3">

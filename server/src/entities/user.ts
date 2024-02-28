@@ -8,6 +8,7 @@ import {
 } from 'typeorm'
 import { z } from 'zod'
 import { Recipe } from './recipe'
+import { Comment } from './comment'
 
 @Entity()
 export class User {
@@ -25,9 +26,12 @@ export class User {
     cascade: ['insert'],
   })
   recipes: Recipe[]
+
+  @OneToMany(() => Comment, (comment) => comment.user)
+  comments: Comment[]
 }
 
-export type UserBare = Omit<User, 'recipes'>
+export type UserBare = Omit<User, 'recipes' | 'comments'>
 
 export const userSchema = validates<UserBare>().with({
   id: z.number().int().positive(),

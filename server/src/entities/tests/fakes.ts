@@ -26,6 +26,7 @@ export const fakeRecipe = <T extends Partial<Recipe>>(
   picture_link: random.string(),
   created_at: random.date(),
   visibility: 'Public',
+  description: random.string(),
   ...overrides,
 })
 

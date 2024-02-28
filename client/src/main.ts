@@ -13,6 +13,7 @@ import router from './router'
 const app = createApp(App)
 
 app.use(createPinia())
+// @ts-ignore
 app.use(formKitPlugin, defaultConfig(config))
 app.use(router)
 

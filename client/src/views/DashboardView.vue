@@ -3,7 +3,9 @@ import { trpc } from '@/trpc'
 import { onBeforeMount, ref } from 'vue'
 import { FwbAlert, FwbButton } from 'flowbite-vue'
 import type { RecipeBare } from '@mono/server/src/shared/entities'
+import { CameraIcon } from '@heroicons/vue/24/outline'
 import Recipe from '@/components/Recipe.vue'
+import ProfileSide from '@/components/ProfileSide.vue'
 
 const recipes = ref<RecipeBare[]>([])
 
@@ -13,15 +15,16 @@ onBeforeMount(async () => {
 </script>
 
 <template>
-  <div class="DashboardView">
-    <div v-if="recipes.length" data-testid="projectList" class="flex flex-row flex-wrap gap-4">
-      <Recipe v-for="recipe in recipes" :key="recipe.id" :recipe="recipe" />
-    </div>
-    <FwbAlert v-else data-testid="projectListEmpty">No recipes yet!</FwbAlert>
+  <div class="DashboardView flex flex-col-reverse md:flex-row gap-4">
+    <div class="mb-4 w-full md:mb-0 md:w-3/4">
+      <div v-if="recipes.length" data-testid="projectList" class="flex flex-row flex-wrap gap-4">
+        <Recipe v-for="recipe in recipes" :key="recipe.id" :recipe="recipe" />
+      </div>
+      <FwbAlert v-else data-testid="projectListEmpty">No recipes yet!</FwbAlert>
 
-    <div class="mt-4">
-      <!-- prettier-ignore -->
-      <FwbButton
+      <div class="mt-4">
+        <!-- prettier-ignore -->
+        <FwbButton
         component="RouterLink"
         tag="router-link"
         :href="({ name: 'RecipeCreate' } as any)"
@@ -29,7 +32,13 @@ onBeforeMount(async () => {
         size="xl"
       >
         Add a new recipe
+        <CameraIcon aria-hidden="true" class="inline h-4 w-4" />
       </FwbButton>
+      </div>
+    </div>
+
+    <div class="w-full md:w-1/4">
+      <ProfileSide></ProfileSide>
     </div>
   </div>
 </template>

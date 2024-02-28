@@ -21,8 +21,9 @@ const [submitLogin, errorMessage] = useErrorMessage(async () => {
 </script>
 
 <template>
-  <PageForm heading="Log in to your account" formLabel="Login" @submit="submitLogin">
-    <template #default>
+  <PageForm  heading="Log in to your account" formLabel="Login" @submit="submitLogin" >
+    
+    <template #default >
       <FwbInput label="Email" type="email" v-model="userForm.email" :required="true" />
 
       <FwbInput
@@ -40,7 +41,7 @@ const [submitLogin, errorMessage] = useErrorMessage(async () => {
       </FwbAlert>
 
       <div class="grid">
-        <FwbButton color="default" type="submit" size="xl">Log in</FwbButton>
+        <FwbButton color="green" type="submit" size="xl">Log in</FwbButton>
       </div>
     </template>
 
@@ -50,10 +51,11 @@ const [submitLogin, errorMessage] = useErrorMessage(async () => {
         {{ ' ' }}
         <RouterLink
           :to="{ name: 'Signup' }"
-          class="font-semibold leading-6 text-indigo-600 hover:text-indigo-500"
+          class="font-semibold leading-6 text-teal-600 hover:text-teal-500"
           >Sign up</RouterLink
         >
       </FwbAlert>
     </template>
   </PageForm>
 </template>
+

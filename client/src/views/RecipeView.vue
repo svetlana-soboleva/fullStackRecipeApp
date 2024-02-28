@@ -5,6 +5,7 @@ import { onBeforeMount, ref } from 'vue'
 import { useRoute } from 'vue-router'
 import { type StepBare } from '@mono/server/src/shared/entities'
 import Step from '../components/Step.vue'
+import Instructions from '../components/Instructions.vue'
 
 const route = useRoute()
 
@@ -36,7 +37,7 @@ onBeforeMount(async () => {
             <h5 class="mb-2 text-4xl font-bold tracking-tight text-gray-400 lg:text-6xl">
               {{ recipe.tittle }}
             </h5>
-            <hr>
+            <hr />
             <h6 class="text-2xl text-amber-200 lg:text-4xl">{{ category }}</h6>
           </div>
         </div>
@@ -50,24 +51,29 @@ onBeforeMount(async () => {
         >
           <div class="flex flex-row items-center gap-2">
             <FormKitIcon icon="time" />
-            <p>{{ recipe.cooking_time }} min</p>
+            <p class="text-center">{{ recipe.cooking_time }} min</p>
           </div>
           <div class="flex flex-row items-center gap-2">
             <FormKitIcon icon="avatarMan" />
-            <p>{{ recipe.servings }} serv</p>
+            <p class="text-center">{{ recipe.servings }} pers</p>
           </div>
-          <div class="flex flex-row items-center">
+          <div class="flex flex-row items-center gap-2">
             <FormKitIcon icon="youtube" />
-            <p>Video</p>
+            <p class="text-center">Video</p>
           </div>
         </div>
       </div>
-      <div class="flex flex-col gap-6 lg:w-1/2">
-        <div class="h-1/2 bg-amber-200">
-          <Step v-for="step in steps" role="listitem" :key="step.id" :step="step" />
-        </div>
+      <div class="flex flex-wrap">
+        <Step
+          v-for="step in steps"
+          role="listitem"
+          :key="step.id"
+          :step="step"
+          class="w-full sm:w-1/2 md:w-1/2 lg:w-1/2 xl:w-1/2"
+        />
       </div>
     </div>
+    <Instructions v-for="step in steps" role="listitem" :key="step.id" :step="step" />
   </div>
 </template>
 

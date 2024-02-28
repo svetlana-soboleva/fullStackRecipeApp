@@ -4,7 +4,7 @@ import { createTestDatabase } from '@tests/utils/database'
 import { User, Category } from '@server/entities'
 import projectRouter from '..'
 
-it('should create a persisted project', async () => {
+it('should create a persisted recipe', async () => {
   // ARRANGE
   const db = await createTestDatabase()
   const user = await db.getRepository(User).save(fakeUser())
@@ -20,6 +20,8 @@ it('should create a persisted project', async () => {
     video_link: 'http://',
     picture_link: 'http://',
     visibility: 'Public',
+    createdAt: new Date(),
+    description: 'any description',
   })
 
   expect(recipeCreated).toMatchObject({
@@ -31,7 +33,8 @@ it('should create a persisted project', async () => {
     servings: '3',
     video_link: 'http://',
     picture_link: 'http://',
-    created_at: expect.any(Date),
+    createdAt: expect.any(Date),
     visibility: 'Public',
+    description: 'any description',
   })
 })

@@ -1,6 +1,5 @@
 <script setup lang="ts">
-
-const { recipe } = defineProps(['recipe']) 
+const { recipe } = defineProps(['recipe'])
 </script>
 
 <template>
@@ -38,6 +37,13 @@ const { recipe } = defineProps(['recipe'])
           placeholder="Give a name to your recipe"
         />
         <FormKit
+          type="text"
+          v-model="recipe.description"
+          label="Give a short description to your recipe:"
+          validation="required|length:1"
+          placeholder="Give a name to your recipe"
+        />
+        <FormKit
           v-model="recipe.cooking_time"
           type="number"
           label="Cook Time:"
@@ -71,6 +77,7 @@ const { recipe } = defineProps(['recipe'])
         />
         <FormKit
           v-model="recipe.visibility"
+          validation="required"
           type="radio"
           label="Visibility"
           help="Do you want to share your recipe with the community?"

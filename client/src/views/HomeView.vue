@@ -4,8 +4,8 @@ import { FwbButton } from 'flowbite-vue'
 
 <template>
   <!-- landing page with Tailwind -->
-  <div class="bg-white dark:bg-gray-800">
-    <div class="container mx-auto px-6 py-8">
+  <div class="bg-white lg:w-2/3 lg:mx-auto dark:bg-gray-800">
+    <div class="container mx-auto px-8 py-8">
       <div class="items-center lg:flex">
         <div class="lg:w-1/2">
           <h2 class="text-3xl font-bold text-gray-800 dark:text-gray-100">
@@ -40,14 +40,12 @@ import { FwbButton } from 'flowbite-vue'
 
         <div class="mt-8 lg:mt-0 lg:w-1/2">
           <div class="flex items-center justify-center lg:justify-end">
-            <div class="max-w-lg">
+            <div class="max-w-lg md:p-8">
               <picture>
-                <!--  <source srcset="../assets/landing-4.avif" type="image/avif" />
-                <source srcset="../assets/landing-4.webp" type="image/webp" /> -->
                 <source srcset="../assets/landing1.jpeg" type="image/jpeg" />
                 <img
-                  class="h-5/6 w-full rounded-md object-cover object-center shadow"
-                  src="../assets/landing.jpg"
+                  class="w-full rounded-lg"
+                  src="../assets/landing1.jpg"
                   alt=""
                 />
               </picture>

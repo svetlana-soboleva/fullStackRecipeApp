@@ -15,7 +15,7 @@ const schema = z
     env: z
       .enum(['development', 'production', 'staging', 'test'])
       .default('development'),
-    isCi: z.boolean().default(false),
+    isCi: z.preprocess(coerceBoolean, z.boolean().default(false)),
     port: z.coerce.number().default(3000),
 
     auth: z.object({

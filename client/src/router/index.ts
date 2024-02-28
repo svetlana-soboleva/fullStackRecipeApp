@@ -18,6 +18,11 @@ const router = createRouter({
           component: () => import('../views/DashboardView.vue'),
         },
         {
+          path: 'userProfile/create',
+          name: 'userProfileCreate',
+          component: () => import('../views/UserProfileCreateView.vue'),
+        },
+        {
           path: 'recipe/create',
           name: 'RecipeCreate',
           component: () => import('../views/RecipeCreateView.vue'),
