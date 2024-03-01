@@ -7,7 +7,6 @@ import {
   PrimaryGeneratedColumn,
   OneToMany,
   CreateDateColumn,
-  UpdateDateColumn,
 } from 'typeorm'
 import { z } from 'zod'
 import { User } from './user'
@@ -48,9 +47,6 @@ export class Recipe {
   @CreateDateColumn()
   createdAt: Date
 
-  @UpdateDateColumn()
-  updatedAt: Date
-
   @Column({ type: 'enum', enum: ['Public', 'Private'], default: 'Public' })
   visibility: string
 
@@ -88,13 +84,11 @@ export const recipeSchema = validates<RecipeBare>().with({
   video_link: z.string(),
   picture_link: z.string(),
   createdAt: z.date(),
-  updatedAt: z.date(),
   visibility: z.string(),
 })
 
 export const recipeInsertSchema = recipeSchema.omit({
   id: true,
- /*  createdAt: true, */
-  updatedAt: true,
+  createdAt: true,
 })
 export type RecipeInsert = z.infer<typeof recipeInsertSchema>

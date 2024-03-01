@@ -18,9 +18,20 @@ const router = createRouter({
           component: () => import('../views/DashboardView.vue'),
         },
         {
+          path: '',
+          name: 'AllRecipes',
+          component: () => import('../views/AllPublicRecipesView.vue'),
+        },
+        {
           path: 'userProfile/create',
           name: 'userProfileCreate',
-          component: () => import('../views/UserProfileCreateView.vue'),
+          component: () => import('../views/userProfile/UserProfileCreateView.vue'),
+        },
+
+        {
+          path: 'userProfile/:id/update',
+          name: 'userProfileUpdate',
+          component: () => import('../views/userProfile/UserProfileUpdateView.vue'),
         },
         {
           path: 'recipe/create',
@@ -42,12 +53,12 @@ const router = createRouter({
     {
       path: '/login',
       name: 'Login',
-      component: () => import('../views/LoginView.vue'),
+      component: () => import('../views/auth/LoginView.vue'),
     },
     {
       path: '/signup',
       name: 'Signup',
-      component: () => import('../views/SignupView.vue'),
+      component: () => import('../views/auth/SignupView.vue'),
     },
     {
       path: '',

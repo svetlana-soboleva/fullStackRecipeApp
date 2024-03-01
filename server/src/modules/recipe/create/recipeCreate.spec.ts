@@ -20,7 +20,6 @@ it('should create a persisted recipe', async () => {
     video_link: 'http://',
     picture_link: 'http://',
     visibility: 'Public',
-    createdAt: new Date(),
     description: 'any description',
   })
 

@@ -3,7 +3,6 @@ import { trpc } from '@/trpc'
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { FwbButton, FwbInput, FwbTextarea } from 'flowbite-vue'
-
 import AlertError from '@/components/AlertError.vue'
 import { type UserProfileBare } from '@mono/server/src/shared/entities'
 
@@ -20,7 +19,7 @@ const errorMessage = ref('')
 
 async function createUserProfile() {
   try {
-    ;(await trpc.userProfile.create.mutate({
+    (await trpc.userProfile.create.mutate({
       ...userProfile.value,
     })) as UserProfileBare
 
@@ -32,23 +31,22 @@ async function createUserProfile() {
 </script>
 
 <template>
-  {{ userProfile }}
   <div class="flex justify-center">
     <form aria-label="UserProfile" @submit.prevent="createUserProfile">
       <FwbInput label="Name" v-model="userProfile.name" type="text" />
 
       <FwbInput label="Surname" v-model="userProfile.surname" type="text" />
       <FwbInput
-        label="Picture"
+        label="Picture lunk"
         v-model="userProfile.profile_picture"
         type="text"
-        placeholder="http://..."
+        placeholder="http://"
       />
       <FwbTextarea
         label="About"
         name="about"
         v-model="userProfile.about"
-        placeholder="Tell about yourself..."
+        placeholder="Few words about yourself"
       />
 
       <AlertError :message="errorMessage" />

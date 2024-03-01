@@ -18,8 +18,7 @@ const db = {
 
 const { login } = usersRouter.createCaller({ db } as any)
 
-
-it.skip('returns a token if the password matches', async () => {
+it('returns a token if the password matches', async () => {
   const { accessToken } = await login({
     email: userSeed.email,
     password: PASSWORD_CORRECT,
@@ -65,7 +64,7 @@ it('throws an error for a short password', async () => {
   ).rejects.toThrow(/password/)
 })
 
-it.skip('allows logging in with different email case', async () => {
+it('allows logging in with different email case', async () => {
   await expect(
     login({
       email: userSeed.email.toUpperCase(),
@@ -74,7 +73,7 @@ it.skip('allows logging in with different email case', async () => {
   ).resolves.toEqual(expect.anything())
 })
 
-it.skip('allows logging in with surrounding white space', async () => {
+it('allows logging in with surrounding white space', async () => {
   await expect(
     login({
       email: ` \t ${userSeed.email}\t `,

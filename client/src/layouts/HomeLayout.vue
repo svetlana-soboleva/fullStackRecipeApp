@@ -7,6 +7,6 @@ const links = [
 ]
 </script>
 
-<template>
-  <StackedLayout :links="links" />
+<template >
+  <StackedLayout :links="links"/>
 </template>

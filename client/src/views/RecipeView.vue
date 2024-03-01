@@ -22,7 +22,6 @@ onBeforeMount(async () => {
   recipe.value = recipeFound
   category.value = await trpc.category.find.query({ id: recipe.value.categoryId })
   steps.value = stepsFound
-  console.log(steps.value)
 })
 </script>
 

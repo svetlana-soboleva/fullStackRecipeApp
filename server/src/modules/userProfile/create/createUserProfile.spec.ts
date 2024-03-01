@@ -1,19 +1,17 @@
-import { createTestDatabase } from '@tests/utils/database'
 import { authContext } from '@tests/utils/context'
 import { UserProfile } from '@server/entities/userProfile'
-import { User } from '@server/entities/user'
-import { fakeUserProfile, fakeUser } from '@server/entities/tests/fakes'
+import { fakeUserProfile } from '@server/entities/tests/fakes'
+import setupTest from '@server/entities/tests/setup'
 import userProfileRouter from '..'
 
+const { db, users } = await setupTest()
+const userProfileRepository = db.getRepository(UserProfile)
+const { create } = userProfileRouter.createCaller(authContext({ db }, users[0]))
+
 it('should create a profile', async () => {
-  const db = await createTestDatabase()
-  const user = await db.getRepository(User).save(fakeUser())
-  const { create } = userProfileRouter.createCaller(authContext({ db }, user))
-
-  const profile = await db
-    .getRepository(UserProfile)
-    .save(fakeUserProfile({ userId: user.id }))
-
-  const profileCreated = await create(profile)
-  expect(profileCreated).toHaveProperty('id')
+  const userProfile = await create(fakeUserProfile({ userId: users[0].id }))
+  const profileCreated = await userProfileRepository.findOneOrFail({
+    where: { userId: users[0].id },
+  })
+  expect(profileCreated).toMatchObject(userProfile)
 })

@@ -12,11 +12,16 @@ function logoutUser() {
   logout()
   router.push({ name: 'Login' })
 }
+
+function toAllRecipes() {
+  router.push({ name: 'AllRecipes' })
+}
 </script>
 
 <template>
   <StackedLayout :links="links">
     <template #menu>
+      <FwbNavbarLink @click.prevent="toAllRecipes" link="#">All Recipes</FwbNavbarLink>
       <FwbNavbarLink @click.prevent="logoutUser" link="#">Logout</FwbNavbarLink>
     </template>
   </StackedLayout>

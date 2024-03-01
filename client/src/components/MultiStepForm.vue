@@ -1,5 +1,7 @@
 <script setup lang="ts">
 const { recipe } = defineProps(['recipe'])
+// fix this
+// Avoid Mutating a Prop Directly. https://mokkapps.de/vue-tips/avoid-mutating-a-prop-directly
 </script>
 
 <template>

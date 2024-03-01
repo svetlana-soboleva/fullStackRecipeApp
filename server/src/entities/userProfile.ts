@@ -1,10 +1,5 @@
 import { validates } from '@server/utils/validation'
-import {
-  Column,
-  Entity,
-  PrimaryGeneratedColumn,
-  OneToOne,
-} from 'typeorm'
+import { Column, Entity, PrimaryGeneratedColumn, OneToOne } from 'typeorm'
 import { z } from 'zod'
 import { User } from './user'
 
@@ -32,13 +27,14 @@ export class UserProfile {
   about: string | null
 }
 
-export type UserProfileBare = Omit<UserProfile, 'user'>
+export type UserProfileBare = Omit<UserProfile, 'user' >
+export type UserProfileUpdate = Omit<UserProfileBare, 'userId' | 'id'>
 
 export const userProfileSchema = validates<UserProfileBare>().with({
   id: z.number().int().positive(),
   userId: z.number().positive(),
-  name: z.string().min(2).nullable(),
-  surname: z.string().min(2).nullable(),
+  name: z.string().trim().nullable(),
+  surname: z.string().trim().nullable(),
   profile_picture: z.string().nullable(),
   about: z.string().nullable(),
 })
