@@ -22,8 +22,6 @@ async function createStep() {
         recipeId,
       })) as StepBare
     }
-    console.log('recipeId:', recipeId)
-    console.log('steps.value:', steps.value)
     router.push({ name: 'Dashboard' })
   } catch (error: any) {
     errorMessage.value = error.message || 'An unexpected error occurred.'

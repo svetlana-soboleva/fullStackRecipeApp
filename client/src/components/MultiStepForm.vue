@@ -1,7 +1,15 @@
 <script setup lang="ts">
-const { recipe } = defineProps(['recipe'])
-// fix this
-// Avoid Mutating a Prop Directly. https://mokkapps.de/vue-tips/avoid-mutating-a-prop-directly
+import { defineProps, defineEmits, ref, watch } from 'vue';
+
+const { recipe: propRecipe } = defineProps(['recipe']);
+
+const emit = defineEmits(['updateRecipe']);
+
+const localRecipe = ref(propRecipe);
+
+watch(localRecipe, (newRecipe) => {
+  emit('updateRecipe', newRecipe);
+});
 </script>
 
 <template>
@@ -10,7 +18,7 @@ const { recipe } = defineProps(['recipe'])
       <FormKit type="step" name="Category">
         <FormKit
           type="select"
-          v-model="recipe.category"
+          v-model="localRecipe.category"
           label="Category"
           placeholder="Select a category for the recipe"
           name="category"
@@ -33,22 +41,22 @@ const { recipe } = defineProps(['recipe'])
       <FormKit type="step" name="Description">
         <FormKit
           type="text"
-          v-model="recipe.tittle"
+          v-model="localRecipe.tittle"
           label="Give a name to your recipe:"
           validation="required|length:1"
           placeholder="Give a name to your recipe"
         />
         <FormKit
-          type="text"
-          v-model="recipe.description"
+          type="textarea"
+          v-model="localRecipe.description"
           label="Give a short description to your recipe:"
           validation="required|length:1"
-          placeholder="Give a name to your recipe"
+          placeholder="What makes this recipe spesial?"
         />
         <FormKit
-          v-model="recipe.cooking_time"
+          v-model="localRecipe.cooking_time"
           type="number"
-          label="Cook Time:"
+          label="Cook Time (min):"
           name="cook time"
           value="25"
           step="1"
@@ -61,24 +69,24 @@ const { recipe } = defineProps(['recipe'])
           value="2"
           step="1"
           validation="required"
-          v-model="recipe.servings"
+          v-model="localRecipe.servings"
         />
         <FormKit
           type="text"
           label="Picture link:"
           name="link"
           validation="required"
-          v-model="recipe.picture_link"
+          v-model="localRecipe.picture_link"
         />
         <FormKit
           type="text"
           label="Video link:"
           name="link"
           validation="required"
-          v-model="recipe.video"
+          v-model="localRecipe.video"
         />
         <FormKit
-          v-model="recipe.visibility"
+          v-model="localRecipe.visibility"
           validation="required"
           type="radio"
           label="Visibility"

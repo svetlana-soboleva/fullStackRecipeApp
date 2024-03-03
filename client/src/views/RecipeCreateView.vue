@@ -34,12 +34,15 @@ async function createRecipe() {
     errorMessage.value = error.message || 'An unexpected error occurred.'
   }
 }
+const handleUpdateRecipe = (newRecipe: any) => {
+  recipe.value = newRecipe
+}
 </script>
 
 <template>
   <div class="flex justify-center">
     <form aria-label="Recipe" @submit.prevent="createRecipe">
-      <MultiStepForm :recipe="recipe" />
+      <MultiStepForm :recipe="recipe" @updateRecipe="handleUpdateRecipe" />
       <div class="space-y-6">
         <FwbHeading tag="h4">New recipe</FwbHeading>
       </div>
