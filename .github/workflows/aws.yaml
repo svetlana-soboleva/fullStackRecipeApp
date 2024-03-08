@@ -40,7 +40,9 @@ jobs:
       - name: Lint client
         run: npm run lint -w=client
 
-      - name: Test server
+      - name: run server tests
+        env:
+          TOKEN_KEY: anything
         run: npm run test -w=server
 
       #- name: Test client (unit)
