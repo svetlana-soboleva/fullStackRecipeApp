@@ -16,14 +16,13 @@ const userForm = ref({
 const [submitLogin, errorMessage] = useErrorMessage(async () => {
   await login(userForm.value)
 
-  router.push({ name: 'Dashboard' })
+  router.push({ name: 'AllRecipes' })
 })
 </script>
 
 <template>
-  <PageForm  heading="Log in to your account" formLabel="Login" @submit="submitLogin" >
-    
-    <template #default >
+  <PageForm heading="Log in to your account" formLabel="Login" @submit="submitLogin">
+    <template #default>
       <FwbInput label="Email" type="email" v-model="userForm.email" :required="true" />
 
       <FwbInput
@@ -58,4 +57,3 @@ const [submitLogin, errorMessage] = useErrorMessage(async () => {
     </template>
   </PageForm>
 </template>
-

@@ -46,7 +46,7 @@ const toggleDropdown = () => {
       <!-- Dropdown menu -->
       <div
         id="dropdown"
-        class="absolute top-40 z-10 w-32 list-none divide-gray-100 rounded-lg bg-white text-base shadow dark:bg-gray-700"
+        class="absolute top-36 z-10 w-32 list-none divide-gray-100 rounded-lg bg-white text-base shadow dark:bg-gray-700"
         v-show="isDropdownOpen"
       >
         <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownButton">
@@ -74,7 +74,7 @@ const toggleDropdown = () => {
         src="../assets/profile.png"
         alt="User Default Picture"
       />
-      <h5 class="mb-1 text-xl font-medium text-gray-900 dark:text-white">
+      <h5 class="mb-1 text-center text-xl font-medium text-gray-900 dark:text-white">
         {{ userProfile.name }} {{ userProfile.surname }}
       </h5>
       <span class="text-center text-sm text-gray-500 dark:text-gray-400">{{

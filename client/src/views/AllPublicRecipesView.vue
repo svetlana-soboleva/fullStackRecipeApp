@@ -5,6 +5,8 @@ import { FaceFrownIcon } from '@heroicons/vue/24/outline'
 import type { RecipeBare } from '@mono/server/src/shared/entities'
 import Recipe from '@/components/Recipe.vue'
 import Category from '@/components/Categories.vue'
+import MainHeader from '@/components/MainHeader.vue'
+import About from '@/components/About.vue'
 import type { CategoryBare } from '@mono/server/src/shared/entities'
 
 const categories = ref<CategoryBare[]>([])
@@ -34,8 +36,12 @@ const handleNoCategory = async () => {
 </script>
 
 <template>
+  <div class=" flex flex-col gap-4 md:flex-row justify-center items-center">
+    <MainHeader class="w-full md:w-1/3"/>
+  <About class="w-full md:w-1/3"/>
+  </div>
+  
   <div>
-    <div>Random Recipe</div>
     <Category
       :categories="categories"
       @selectedCategory="handleSelectedCategory"

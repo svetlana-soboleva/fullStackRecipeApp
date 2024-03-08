@@ -8,7 +8,7 @@ import {
 import { createTestDatabase } from '@tests/utils/database'
 import router from '..'
 
-it('should return a list o recipies of the user', async () => {
+it('should return a list of recipies of the user', async () => {
   const db = await createTestDatabase()
 
   const [user, userOther] = await db

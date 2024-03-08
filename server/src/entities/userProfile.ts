@@ -1,5 +1,11 @@
 import { validates } from '@server/utils/validation'
-import { Column, Entity, PrimaryGeneratedColumn, OneToOne } from 'typeorm'
+import {
+  Column,
+  Entity,
+  PrimaryGeneratedColumn,
+  OneToOne,
+  JoinColumn,
+} from 'typeorm'
 import { z } from 'zod'
 import { User } from './user'
 
@@ -12,6 +18,7 @@ export class UserProfile {
   userId: number
 
   @OneToOne(() => User, { onDelete: 'CASCADE' })
+  @JoinColumn()
   user: User
 
   @Column('text', { nullable: true })
@@ -27,7 +34,7 @@ export class UserProfile {
   about: string | null
 }
 
-export type UserProfileBare = Omit<UserProfile, 'user' >
+export type UserProfileBare = Omit<UserProfile, 'user'>
 export type UserProfileUpdate = Omit<UserProfileBare, 'userId' | 'id'>
 
 export const userProfileSchema = validates<UserProfileBare>().with({
@@ -40,4 +47,6 @@ export const userProfileSchema = validates<UserProfileBare>().with({
 })
 
 export const userProfileInsertSchema = userProfileSchema.omit({ id: true })
+
+
 export type UserProfileInsert = z.infer<typeof userProfileInsertSchema>

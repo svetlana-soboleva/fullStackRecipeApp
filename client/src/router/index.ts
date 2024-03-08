@@ -18,11 +18,6 @@ const router = createRouter({
           component: () => import('../views/DashboardView.vue'),
         },
         {
-          path: '',
-          name: 'AllRecipes',
-          component: () => import('../views/AllPublicRecipesView.vue'),
-        },
-        {
           path: 'userProfile/create',
           name: 'userProfileCreate',
           component: () => import('../views/userProfile/UserProfileCreateView.vue'),
@@ -47,6 +42,18 @@ const router = createRouter({
           path: 'recipe/:id',
           name: 'Recipe',
           component: () => import('../views/RecipeView.vue'),
+        },
+      ],
+    },
+    {
+      path: '/dashboard',
+      component: DashboardLayout,
+      beforeEnter: [authenticate],
+      children: [
+        {
+          path: '/welcome',
+          name: 'AllRecipes',
+          component: () => import('../views/AllPublicRecipesView.vue'),
         },
       ],
     },

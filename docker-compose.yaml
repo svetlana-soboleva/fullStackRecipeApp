@@ -1,0 +1,55 @@
+version: "3.8"
+
+services:
+  postgres:
+    image: postgres:16.1-alpine
+    environment:
+      POSTGRES_USER: svetlana
+      POSTGRES_PASSWORD: svetlana
+      POSTGRES_DB: recipeApp
+    ports:
+      - "5432"
+    volumes:
+      - recipeApp-db:/var/lib/postgresql/data
+
+  # start up an API server
+  server:
+    build:
+      context: .
+      dockerfile: ./server/Dockerfile
+
+    env_file:
+      - ./server/.env
+    environment:
+      DB_HOST: postgres
+      DB_USER: svetlana
+      DB_PASSWORD: svetlana
+      DB_NAME: recipeApp
+      PORT: 3000
+    ports:
+      - "3000"
+    depends_on:
+      - postgres
+
+  # start up a client (and proxy) server
+  client:
+    build:
+      context: .
+      dockerfile: ./client/Dockerfile
+      args:
+        # We want to pass in the configuration of how the
+        # user will reach the server. This must be decided
+        # before the `npm run build`, since we need to prepare
+        # these values for static JS files that will be served
+        # by NGINX to our visitors.
+        VITE_API_ORIGIN: http://localhost:3001
+        VITE_API_PATH: /api/v1/trpc
+    environment:
+      API_PROXY_PASS: http://server:3000
+    ports:
+      - "3001:80"
+    depends_on:
+      - server
+
+volumes:
+  recipeApp-db:

@@ -4,7 +4,7 @@ import { FwbButton } from 'flowbite-vue'
 
 <template>
   <!-- landing page with Tailwind -->
-  <div class="bg-white lg:w-2/3 lg:mx-auto dark:bg-gray-800">
+  <div class="bg-white dark:bg-gray-800 lg:mx-auto lg:w-2/3">
     <div class="container mx-auto px-8 py-8">
       <div class="items-center lg:flex">
         <div class="lg:w-1/2">
@@ -43,11 +43,7 @@ import { FwbButton } from 'flowbite-vue'
             <div class="max-w-lg md:p-8">
               <picture>
                 <source srcset="../assets/landing1.jpeg" type="image/jpeg" />
-                <img
-                  class="w-full rounded-lg"
-                  src="../assets/landing1.jpg"
-                  alt=""
-                />
+                <img class="w-full rounded-lg" src="../assets/landing1.jpeg" alt="" />
               </picture>
             </div>
           </div>

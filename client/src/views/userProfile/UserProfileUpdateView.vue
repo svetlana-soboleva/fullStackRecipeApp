@@ -10,6 +10,7 @@ import { type UserProfileUpdate } from '@mono/server/src/shared/entities'
 const route = useRoute()
 const userProfileId = Number(route.params.id)
 
+
 const router = useRouter()
 const userProfile = ref<UserProfileUpdate>({
   name: '',
@@ -49,17 +50,16 @@ async function updateUserProfile() {
 <template>
   <div class="flex justify-center">
     <form aria-label="UserProfile" @submit.prevent="updateUserProfile">
-      <FwbInput v-if="userProfile.name" label="Name" v-model="userProfile.name" type="text" />
+      
+     <!--  resolve this bug with v-if -->
+      <FwbInput label="Name" v-model="userProfile.name" type="text" />
 
       <FwbInput
-        v-if="userProfile.surname"
         label="Surname"
         v-model="userProfile.surname"
         type="text"
       />
-
       <FwbInput
-        v-if="userProfile.profile_picture"
         label="Picture link"
         v-model="userProfile.profile_picture"
         type="text"
@@ -67,7 +67,6 @@ async function updateUserProfile() {
       />
 
       <FwbTextarea
-        v-if="userProfile.about"
         label="About"
         name="about"
         v-model="userProfile.about"

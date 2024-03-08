@@ -5,9 +5,9 @@
     "baseUrl": ".",
     "rootDir": "..",
 
-    "module": "ES2022",
-    "target": "ES2022",
-    "moduleResolution": "Bundler",
+    "module": "ESNext",
+    "target": "ESNext",
+    "moduleResolution": "Node",
 
     "experimentalDecorators": true,
     "strict": true,

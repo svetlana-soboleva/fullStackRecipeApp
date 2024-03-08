@@ -14,12 +14,12 @@ export default function createApp(db: Database) {
   app.use(cors())
   app.use(express.json())
 
-  app.use('/health', (_, res) => {
+  app.use('/api/health', (_, res) => {
     res.status(200).send('OK')
   })
 
   app.use(
-    '/v1/trpc',
+    '/api/v1/trpc',
     createExpressMiddleware({
       createContext: ({ req, res }: CreateExpressContextOptions): Context => ({
         db,
