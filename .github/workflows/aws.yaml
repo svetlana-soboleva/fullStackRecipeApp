@@ -169,34 +169,34 @@ jobs:
 
       - name: Create containers.json
         run: |
-          echo '{
-            "client": {
-              "image": "${{ env.LIGHTSAIL_CLIENT_IMAGE }}",
-              "command": [],
-              "ports": {
-                "80": "HTTP"
+            echo '{
+              "client": {
+                "image": "${{ env.LIGHTSAIL_CLIENT_IMAGE }}",
+                "command": [],
+                "ports": {
+                  "80": "HTTP"
+                },
+                "environment": {
+                  "API_PROXY_PASS": "http://localhost:3000"
+                }
               },
-              "environment": {
-                "API_PROXY_PASS": "http://localhost:3000"
+              "server": {
+                "image": "${{ env.LIGHTSAIL_SERVER_IMAGE }}",
+                "ports": {
+                  "3000": "HTTP"
+                },
+                "environment": {
+                  "NODE_ENV": "production",
+                  "DB_SSL": "true",
+                  "DB_SYNC": "true",
+                  "DB_HOST": "${{ secrets.PROD_DB_HOST }}",
+                  "DB_NAME": "${{ secrets.PROD_DB_NAME }}",
+                  "DB_USER": "${{ secrets.PROD_DB_USER }}",
+                  "DB_PASSWORD": "${{ secrets.PROD_DB_PASSWORD }}",
+                  "TOKEN_KEY": "${{ secrets.TOKEN_KEY }}",
+                }
               }
-            },
-            "server": {
-              "image": "${{ env.LIGHTSAIL_SERVER_IMAGE }}",
-              "ports": {
-                "3000": "HTTP"
-              },
-              "environment": {
-                "NODE_ENV": "production",
-                "DB_SSL": "true",
-                "DB_SYNC": "true",
-                "DB_HOST": "${{ secrets.PROD_DB_HOST }}",
-                "DB_NAME": "${{ secrets.PROD_DB_NAME }}",
-                "DB_USER": "${{ secrets.PROD_DB_USER }}",
-                "DB_PASSWORD": "${{ secrets.PROD_DB_PASSWORD }}",
-                "TOKEN_KEY": "${{ secrets.TOKEN_KEY }}",
-              }
-            }
-          }' > containers.json
+            }' > containers.json
 
       - name: Create public-endpoint.json file
         run: |
