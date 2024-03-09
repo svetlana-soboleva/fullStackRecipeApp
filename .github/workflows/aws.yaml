@@ -192,7 +192,8 @@ jobs:
                 "DB_HOST": "${{ secrets.PROD_DB_HOST }}",
                 "DB_NAME": "${{ secrets.PROD_DB_NAME }}",
                 "DB_USER": "${{ secrets.PROD_DB_USER }}",
-                "DB_PASSWORD": "${{ secrets.PROD_DB_PASSWORD }}"
+                "DB_PASSWORD": "${{ secrets.PROD_DB_PASSWORD }}",
+                "TOKEN_KEY": "${{ secrets.TOKEN_KEY }}"
               }
             }
           }' > containers.json
