@@ -39,7 +39,7 @@ const schema = z
       database: isInMemory ? z.string().optional() : z.string(),
       username: isInMemory ? z.string().optional() : z.string(),
       password: isInMemory ? z.string().optional() : z.string(),
-
+      ssl: z.preprocess(coerceBoolean, z.boolean().default(false)),
       logging: z.preprocess(coerceBoolean, z.boolean().default(isDevTest)),
       synchronize: z.preprocess(coerceBoolean, z.boolean().default(isDevTest)),
     }),
@@ -66,6 +66,7 @@ const config = schema.parse({
     password: env.DB_PASSWORD,
     logging: env.DB_LOGGING,
     synchronize: env.DB_SYNC,
+    ssl: env.DB_SSL,
   },
 })
 
