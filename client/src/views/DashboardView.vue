@@ -19,12 +19,12 @@ onBeforeMount(async () => {
     <div class="mb-4 w-full md:mb-0 md:w-3/4">
       <div
         v-if="recipes.length"
-        data-testid="projectList"
+        data-testid="recipeList"
         class="flex flex-row flex-wrap justify-center gap-4"
       >
         <Recipe v-for="recipe in recipes" :key="recipe.id" :recipe="recipe" />
       </div>
-      <FwbAlert v-else data-testid="projectListEmpty">No recipes yet!</FwbAlert>
+      <FwbAlert v-else data-testid="recipeListEmpty">No recipes yet!</FwbAlert>
 
       <div class="mt-4"></div>
     </div>
@@ -35,7 +35,7 @@ onBeforeMount(async () => {
         component="RouterLink"
         tag="router-link"
         :href="({ name: 'RecipeCreate' } as any)"
-        data-testid="createProject"
+        data-testid="createRecipe"
         size="md"
       >
         Add a new recipe
