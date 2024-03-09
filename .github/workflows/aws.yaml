@@ -85,6 +85,8 @@ jobs:
           retry-delay: 5s
           url: http://localhost:3000/api/health
 
+      - run: cat .health-check-result
+
       - name: Test client E2E
         run: npm run test:e2e -w=client
         env:
