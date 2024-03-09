@@ -24,5 +24,7 @@ COPY --from=builder /recipeApp/client/dist /usr/share/nginx/html
 ENV NGINX_ENVSUBST_OUTPUT_DIR '/etc/nginx/conf.d'
 
 COPY client/nginx/default.conf.template /etc/nginx/templates/default.conf.template
+
 EXPOSE 80
+
 CMD ["nginx", "-g", "daemon off;"]
