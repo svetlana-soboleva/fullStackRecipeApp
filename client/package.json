@@ -21,6 +21,7 @@
     "@formkit/vue": "^1.5.9",
     "@headlessui/vue": "^1.7.16",
     "@heroicons/vue": "^2.1.1",
+    "@preline/dropdown": "^2.0.2",
     "@trpc/client": "^10.41.0",
     "@vue-hero-icons/outline": "^1.7.2",
     "flowbite": "^2.0.0",

@@ -7,6 +7,7 @@ import { type StepBare } from '@mono/server/src/shared/entities'
 import Step from '../components/Step.vue'
 import Instructions from '../components/Instructions.vue'
 import DeleteButton from '@/components/DeleteButton.vue'
+import PrevButton from '@/components/PrevButton.vue'
 
 const route = useRoute()
 const router = useRouter()
@@ -31,23 +32,25 @@ const deleteFunction = async () => {
   await trpc.recipe.reciveRecipe.mutate({ id: recipeId })
   router.push({ name: 'Dashboard' })
 }
+
 </script>
 
 <template>
   <div v-if="recipe">
+    <PrevButton />
     <div
       class="flex flex-col rounded-lg border border-gray-200 bg-white shadow md:max-w-full lg:flex-row"
     >
       <div class="picture relative lg:w-1/2">
-        <DeleteButton class="absolute right-4 top-4" @click="deleteFunction" />
         <div class="absolute right-12 top-16">
           <div class="flex flex-col text-right">
-
-            <h5 class="mb-2 text-4xl font-bold tracking-tight text-black lg:text-6xl bg-white mix-blend-screen px-2 py-2">
+            <h5
+              class="font-customFont mb-2 bg-white px-2 py-2 text-4xl font-bold tracking-tight text-black mix-blend-screen lg:text-6xl"
+            >
               {{ recipe.tittle }}
             </h5>
             <hr />
-            <h6 class="text-2xl  text-amber-200 lg:text-4xl">{{ category }}</h6>
+            <h6 class="font-mono text-2xl text-amber-200 lg:text-4xl">{{ category }}</h6>
           </div>
         </div>
         <img
@@ -56,7 +59,7 @@ const deleteFunction = async () => {
           alt=""
         />
         <div
-          class="absolute bottom-0 left-0 right-0 mx-auto my-2 flex flex-row justify-between gap-4 bg-slate-100 px-8 py-2 opacity-50 transition-opacity duration-300 ease-in-out hover:opacity-100 hover:shadow-lg"
+          class="font-customFont absolute bottom-0 left-0 right-0 mx-auto my-2 flex flex-row justify-between gap-4 bg-slate-100 px-8 py-2 opacity-50 transition-opacity duration-300 ease-in-out hover:opacity-100 hover:shadow-lg"
         >
           <div class="flex flex-row items-center gap-2">
             <FormKitIcon icon="time" />
@@ -68,34 +71,43 @@ const deleteFunction = async () => {
           </div>
           <div class="flex flex-row items-center gap-2">
             <FormKitIcon icon="youtube" />
-            <p class="text-center">Video</p>
+            <a
+              :href="recipe.video_link"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-center text-grey-500 hover:underline"
+            >
+              Video
+            </a>
           </div>
         </div>
       </div>
-      <div class="flex w-full flex-col items-center lg:w-1/2">
+      <div class="flex w-full flex-col lg:w-1/2">
         <!-- Toggle switch for Instructions and Steps -->
         <label
           for="toggleSwitch"
-          class="flex cursor-pointer rounded-md p-2 opacity-75 dark:text-gray-800"
+          class="flex justify-center cursor-pointer rounded-md p-2 opacity-75 dark:text-gray-800"
         >
           <input id="toggleSwitch" type="checkbox" class="peer hidden" v-model="showInstructions" />
           <span
-            class="w-28 rounded-l-md bg-green-200 px-4 py-2 text-center peer-checked:bg-gray-200"
+            class="w-28 rounded-l-md bg-green-200 px-4 py-2 text-center font-mono font-semibold peer-checked:bg-gray-200"
             :class="{ 'bg-gray-300': !showInstructions }"
             >Steps</span
           >
           <span
-            class="rw-28 rounded-r-md bg-gray-300 px-4 py-2 text-center peer-checked:bg-green-200"
+            class="rw-28 rounded-r-md bg-gray-300 px-4 py-2 text-center font-mono font-semibold peer-checked:bg-green-200"
             :class="{ 'bg-violet-400': showInstructions }"
             >Instructions</span
           >
         </label>
 
         <div v-if="showInstructions">
+          <div class="flex flex-wrap justify-start mx-4">
           <Instructions v-for="step in steps" role="listitem" :key="step.id" :step="step" />
         </div>
+        </div>
         <div v-else>
-          <div class="flex flex-wrap">
+          <div class="flex flex-wrap justify-start mx-4">
             <Step
               v-for="step in steps"
               role="listitem"
@@ -106,6 +118,7 @@ const deleteFunction = async () => {
           </div>
         </div>
       </div>
+      <DeleteButton class="m-2 h-12 self-end" @click="deleteFunction" />
     </div>
   </div>
 </template>

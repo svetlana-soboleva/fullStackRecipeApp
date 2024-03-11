@@ -9,8 +9,8 @@ const { step } = defineProps<{
 
 <template>
   <div class="flex flex-col gap-2 p-4">
-    <div class="mb-2 text-lg font-semibold text-gray-900 dark:text-white">{{ step.name }}:</div>
-    <ul class="max-w-md list-inside list-disc space-y-1 text-gray-500 dark:text-gray-400">
+    <div class="font-customFont mb-2 text-lg font-semibold text-gray-900 dark:text-white">{{ step.name }}:</div>
+    <ul class="font-customFont max-w-md list-inside list-disc space-y-1 text-gray-700 dark:text-gray-400">
       <li v-for="(ingredient, index) in organizeIngredients(step.ingredients)" :key="index">
         {{ ingredient }}
       </li>

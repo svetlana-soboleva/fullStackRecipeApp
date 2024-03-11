@@ -19,7 +19,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="my-6 flex flex-row flex-wrap items-center justify-center gap-4 ">
+  <div class="font-mono my-6 flex flex-row flex-wrap items-center justify-center gap-4 ">
     <div
     @click="() => noSelectedCategory()"
       class="rounded-full border-2 border-solid border-amber-300 bg-amber-100 px-4 py-2 text-center text-xs opacity-80 hover:bg-amber-200"

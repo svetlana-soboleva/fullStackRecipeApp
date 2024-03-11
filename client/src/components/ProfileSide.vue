@@ -20,7 +20,7 @@ const toggleDropdown = () => {
 <template>
   <div
     v-if="userProfile"
-    class="w-full max-w-sm rounded-lg border border-gray-200 bg-white shadow dark:border-gray-700 dark:bg-gray-800"
+    class="font-mono w-full max-w-sm rounded-lg border border-gray-200 bg-white shadow dark:border-gray-700 dark:bg-gray-800"
   >
     <div class="flex justify-end px-4 pt-4">
       <!-- Dropdown button and menu here -->
@@ -46,7 +46,7 @@ const toggleDropdown = () => {
       <!-- Dropdown menu -->
       <div
         id="dropdown"
-        class="absolute top-36 z-10 w-32 list-none divide-gray-100 rounded-lg bg-white text-base shadow dark:bg-gray-700"
+        class="absolute top-32 z-10 w-32 list-none divide-gray-100 rounded-lg bg-white text-base shadow dark:bg-gray-700"
         v-show="isDropdownOpen"
       >
         <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownButton">

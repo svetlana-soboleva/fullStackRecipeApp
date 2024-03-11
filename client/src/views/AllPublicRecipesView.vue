@@ -38,7 +38,7 @@ const handleNoCategory = async () => {
 <template>
   <div class=" flex flex-col gap-4 md:flex-row justify-center items-center">
     <MainHeader class="w-full md:w-1/3"/>
-  <About class="w-full md:w-1/3"/>
+  <About class="font-mono w-full md:w-1/3"/>
   </div>
   
   <div>

@@ -14,8 +14,9 @@ export default {
   plugins: [flowbitePlugin],
   theme: {
     fontFamily: {
+      customFont: ['"Special Elite"', "sans-serif"],
       body: ['"Inter var"', '"Inter"', '"Open Sans"', 'Helvetica', '', 'sans-serif', 'Montserrat'],
-      mono: ['"Fira Code"', 'monospace'],
+      mono: ['"Open Sans"', 'monospace'],
     },
   },
 }
