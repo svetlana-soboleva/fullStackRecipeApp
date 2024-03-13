@@ -26,7 +26,6 @@ const navigation = computed(() =>
       <FwbNavbar-collapse :isShowMenu="isShowMenu">
         <!-- prettier-ignore -->
         <FwbNavbarLink
-        
           v-for="link in navigation"
           :key="link.name"
           :is-active="link.isActive"

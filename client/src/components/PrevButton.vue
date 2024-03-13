@@ -1,53 +1,31 @@
 <script lang="ts" setup>
+import { Menu, MenuButton, MenuItems, MenuItem } from '@headlessui/vue'
 
+const links = [
+  { href: '/dashboard', label: 'Dashboard' },
+  { href: '/welcome', label: 'AllRecipes' },
+]
 </script>
 
 <template>
-  <button
-    id="dropdownHoverButton"
-    data-dropdown-toggle="dropdownHover"
-    data-dropdown-trigger="hover"
-    class="inline-flex items-center rounded-lg bg-blue-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-    type="button"
-  >
-    Dropdown hover
-    <svg
-      class="ms-3 h-2.5 w-2.5"
-      aria-hidden="true"
-      xmlns="http://www.w3.org/2000/svg"
-      fill="none"
-      viewBox="0 0 10 6"
-    >
-      <path
-        stroke="currentColor"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        stroke-width="2"
-        d="m1 1 4 4 4-4"
-      />
-    </svg>
-  </button>
-
-  <!-- Dropdown menu -->
-  <div
-    id="dropdownHover"
-    class="z-10 hidden w-44 divide-y divide-gray-100 rounded-lg bg-white shadow dark:bg-gray-700"
-  >
-    <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownHoverButton">
-      <li>
-        <a
-          href="#"
-          class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-          >Dashboard</a
+  <div class="relative z-50">
+    <Menu>
+      <MenuButton
+        class="my-2 rounded-l-lg bg-yellow-200 px-4 py-2 text-slate-600 shadow-md hover:bg-lime-100"
+      >
+        Back
+      </MenuButton>
+      <MenuItems class="absolute left-0 w-28 rounded-lg bg-slate-200 p-2 opacity-70">
+        <MenuItem
+          v-for="link in links"
+          :key="link.href"
+          :href="link.href"
+          as="a"
+          class="my-2 flex flex-col text-center font-semibold text-slate-700"
         >
-      </li>
-      <li>
-        <a
-          href="#"
-          class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-          >All recipes</a
-        >
-      </li>
-    </ul>
+          {{ link.label }}
+        </MenuItem>
+      </MenuItems>
+    </Menu>
   </div>
 </template>

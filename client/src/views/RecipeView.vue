@@ -32,7 +32,6 @@ const deleteFunction = async () => {
   await trpc.recipe.reciveRecipe.mutate({ id: recipeId })
   router.push({ name: 'Dashboard' })
 }
-
 </script>
 
 <template>
@@ -75,7 +74,7 @@ const deleteFunction = async () => {
               :href="recipe.video_link"
               target="_blank"
               rel="noopener noreferrer"
-              class="text-center text-grey-500 hover:underline"
+              class="text-grey-500 text-center hover:underline"
             >
               Video
             </a>
@@ -86,28 +85,28 @@ const deleteFunction = async () => {
         <!-- Toggle switch for Instructions and Steps -->
         <label
           for="toggleSwitch"
-          class="flex justify-center cursor-pointer rounded-md p-2 opacity-75 dark:text-gray-800"
+          class="flex cursor-pointer justify-center rounded-md p-2 opacity-75 dark:text-gray-800 "
         >
           <input id="toggleSwitch" type="checkbox" class="peer hidden" v-model="showInstructions" />
           <span
-            class="w-28 rounded-l-md bg-green-200 px-4 py-2 text-center font-mono font-semibold peer-checked:bg-gray-200"
+            class="w-28 rounded-l-md shadow-md  bg-yellow-200 px-4 py-2 text-center font-mono font-semibold peer-checked:bg-gray-200 peer-checked:hover:bg-gray-400"
             :class="{ 'bg-gray-300': !showInstructions }"
             >Steps</span
           >
           <span
-            class="rw-28 rounded-r-md bg-gray-300 px-4 py-2 text-center font-mono font-semibold peer-checked:bg-green-200"
+            class="rw-28 rounded-r-md bg-gray-300 shadow-md  px-4 py-2 text-center font-mono font-semibold hover:bg-gray-400 peer-checked:bg-yellow-200"
             :class="{ 'bg-violet-400': showInstructions }"
             >Instructions</span
           >
         </label>
 
         <div v-if="showInstructions">
-          <div class="flex flex-wrap justify-start mx-4">
-          <Instructions v-for="step in steps" role="listitem" :key="step.id" :step="step" />
-        </div>
+          <div class="mx-4 flex flex-wrap justify-start">
+            <Instructions v-for="step in steps" role="listitem" :key="step.id" :step="step" />
+          </div>
         </div>
         <div v-else>
-          <div class="flex flex-wrap justify-start mx-4">
+          <div class="mx-4 flex flex-wrap justify-start">
             <Step
               v-for="step in steps"
               role="listitem"

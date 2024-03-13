@@ -50,22 +50,22 @@ async function updateUserProfile() {
   <div class="flex justify-center">
     <form aria-label="UserProfile" @submit.prevent="updateUserProfile">
       <!--  resolve this bug with v-if -->
-      <FwbInput v-if="userProfile.name" label="Name" v-model="userProfile.name" type="text" />
+      <div v-if="typeof userProfile.name === 'string'">
+        <FwbInput label="Name" v-model="userProfile.name" type="text" />
+      </div>
 
-      <FwbInput
-        v-if="userProfile.surname"
-        label="Surname"
-        v-model="userProfile.surname"
-        type="text"
-      />
-      <FwbInput
-        v-if="userProfile.profile_picture"
-        label="Picture link"
-        v-model="userProfile.profile_picture"
-        type="text"
-        placeholder="http://"
-      />
-
+      <div v-if="typeof userProfile.surname === 'string'">
+        <FwbInput label="Surname" v-model="userProfile.surname" type="text" />
+      </div>
+      <div v-if="typeof userProfile.profile_picture === 'string'">
+        <FwbInput
+          label="Picture link"
+          v-model="userProfile.profile_picture"
+          type="text"
+          placeholder="http://"
+        />
+      </div>
+      <div v-if="typeof userProfile.about === 'string'">
       <FwbTextarea
         v-if="userProfile.about"
         label="About"
@@ -73,6 +73,7 @@ async function updateUserProfile() {
         v-model="userProfile.about"
         placeholder="Few words about yourself"
       />
+    </div>
       <div v-if="isLoading" class="text-center text-gray-600">Updating profile...</div>
       <AlertError :message="errorMessage" />
       <div class="mt-8 grid grid-cols-2 items-center gap-3">

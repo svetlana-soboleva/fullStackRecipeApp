@@ -1,4 +1,5 @@
 import flowbitePlugin from 'flowbite/plugin'
+import headlessUITailwindCSSPlugin from '@headlessui/tailwindcss'
 
 /** @type {import('tailwindcss').Config} */
 export default {
@@ -11,10 +12,10 @@ export default {
     '../node_modules/flowbite-vue/**/*.{js,jsx,ts,tsx}',
     '../node_modules/flowbite/**/*.{js,jsx,ts,tsx}',
   ],
-  plugins: [flowbitePlugin],
+  plugins: [flowbitePlugin, headlessUITailwindCSSPlugin()],
   theme: {
     fontFamily: {
-      customFont: ['"Special Elite"', "sans-serif"],
+      customFont: ['"Special Elite"', 'sans-serif'],
       body: ['"Inter var"', '"Inter"', '"Open Sans"', 'Helvetica', '', 'sans-serif', 'Montserrat'],
       mono: ['"Open Sans"', 'monospace'],
     },
