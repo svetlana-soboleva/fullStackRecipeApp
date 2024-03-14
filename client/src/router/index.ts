@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import DashboardLayout from '@/layouts/DashboardLayout.vue'
+import AllRecipesLayout from '@/layouts/AllRecipesLayout.vue'
 import { authenticate } from './guards'
 import HomeLayout from '@/layouts/HomeLayout.vue'
 
@@ -46,17 +47,18 @@ const router = createRouter({
       ],
     },
     {
-      path: '/dashboard',
-      component: DashboardLayout,
+      path: '/allRecipes',
+      component: AllRecipesLayout,
       beforeEnter: [authenticate],
       children: [
         {
-          path: '/welcome',
-          name: 'AllRecipes',
+          path: '/allRecipes',
+          name: 'All Recipes',
           component: () => import('../views/AllPublicRecipesView.vue'),
         },
       ],
     },
+
     {
       path: '/login',
       name: 'Login',

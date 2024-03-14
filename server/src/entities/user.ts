@@ -22,9 +22,6 @@ export class User {
   @Column('text', { select: false })
   password: string
 
-  @Column('boolean', { default: false })
-  admin: boolean
-
   @OneToMany(() => Recipe, (recipe) => recipe.user, {
     cascade: ['insert'],
   })
@@ -40,7 +37,6 @@ export const userSchema = validates<UserBare>().with({
   id: z.number().int().positive(),
   email: z.string().trim().toLowerCase().email(),
   password: z.string().min(8).max(64),
-  admin: z.boolean()
 })
 
 export const userInsertSchema = userSchema.omit({ id: true })

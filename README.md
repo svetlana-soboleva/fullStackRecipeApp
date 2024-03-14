@@ -54,7 +54,7 @@ cd client
 npm run dev
 ```
 
-6. Open http://localhost:3000 (or the address shown in your console) in your web browser to view the app.
+6. Open http://localhost:5173 (or the address shown in your console) in your web browser to view the app.
 
 ## 🧪 Tests
 
@@ -76,7 +76,10 @@ npm run test:unit
 
 The Recipe App is an evolving project, and future developments may include:
 
-Review System: Allowing users to leave reviews and ratings for recipes.
-Comments: Adding a comment section for users to share their tips and experiences.
+- Admin Panel: create a separate dashboard accessible only to administrators. Implement authentication and authorization mechanisms to ensure only authorized users can access the admin panel. Include functionalities such as managing users, recipes, categories, and other relevant data.
+
+- Review System: Allowing users to leave reviews and ratings for recipes.
+
+- Comments: Adding a comment section for users to share their tips and experiences.
 
 Feel free to contribute, suggest improvements, or share your favorite recipes to make this platform even better! Happy cooking!

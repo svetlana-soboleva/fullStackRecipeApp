@@ -2,7 +2,7 @@
 import { trpc } from '@/trpc'
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
-import { FwbButton, FwbHeading } from 'flowbite-vue'
+import { FwbButton } from 'flowbite-vue'
 import MultiStepForm from '@/components/MultiStepForm.vue'
 import AlertError from '@/components/AlertError.vue'
 import { type RecipeBare } from '@mono/server/src/shared/entities'
@@ -32,6 +32,7 @@ async function createRecipe() {
     router.push({ name: 'StepCreate', params: { id: createdRecipe.id } } as any)
   } catch (error: any) {
     errorMessage.value = error.message || 'An unexpected error occurred.'
+    console.log(errorMessage.value)
   }
 }
 const handleUpdateRecipe = (newRecipe: any) => {
@@ -40,19 +41,15 @@ const handleUpdateRecipe = (newRecipe: any) => {
 </script>
 
 <template>
-  <div class="flex justify-center">
+  <div class="min-h-screen  flex justify-center">
     <form aria-label="Recipe" @submit.prevent="createRecipe">
       <MultiStepForm :recipe="recipe" @updateRecipe="handleUpdateRecipe" />
-      <div class="space-y-6">
-        <FwbHeading tag="h4">New recipe</FwbHeading>
-      </div>
-
-      <AlertError :message="errorMessage" />
+      <AlertError class="" :message="errorMessage" />
 
       <div class="mt-8 grid grid-cols-2 items-center gap-3">
-        <FwbButton type="submit">Save</FwbButton>
+        <fwb-button type="submit" color="green">Save</fwb-button>
         <RouterLink
-          class="text-center text-sm font-semibold leading-6 text-indigo-600 hover:text-indigo-500"
+          class="text-center text-sm font-semibold leading-6 text-red-400 hover:text-red-500"
           component="RouterLink"
           :to="{ name: 'Dashboard' }"
           >Cancel</RouterLink

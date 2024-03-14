@@ -2,7 +2,7 @@
 
 <template>
   <div class="font-customFont relative m-10">
-    <h1 class="text-5xl">
+    <h1 class="text-5xl"  data-testid="welcome">
       Welcome to Our <br />
       <span class="text-green-500 font-bold">Recipe Community!</span>
     </h1>

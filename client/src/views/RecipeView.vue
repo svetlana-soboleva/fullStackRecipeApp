@@ -6,8 +6,8 @@ import { useRoute, useRouter } from 'vue-router'
 import { type StepBare } from '@mono/server/src/shared/entities'
 import Step from '../components/Step.vue'
 import Instructions from '../components/Instructions.vue'
-import DeleteButton from '@/components/DeleteButton.vue'
-import PrevButton from '@/components/PrevButton.vue'
+import DeleteButton from '@/components/buttons/DeleteButton.vue'
+import PrevButton from '@/components/buttons/PrevButton.vue'
 
 const route = useRoute()
 const router = useRouter()
@@ -29,7 +29,7 @@ onBeforeMount(async () => {
 })
 
 const deleteFunction = async () => {
-  await trpc.recipe.reciveRecipe.mutate({ id: recipeId })
+  await trpc.recipe.removeRecipe.mutate({ id: recipeId })
   router.push({ name: 'Dashboard' })
 }
 </script>
@@ -52,6 +52,7 @@ const deleteFunction = async () => {
             <h6 class="font-mono text-2xl text-amber-200 lg:text-4xl">{{ category }}</h6>
           </div>
         </div>
+      
         <img
           class="w-full rounded-t-lg object-cover md:h-auto md:rounded-lg"
           :src="recipe.picture_link"

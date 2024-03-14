@@ -1,11 +1,10 @@
 <script lang="ts" setup>
 import { trpc } from '@/trpc'
 import { onBeforeMount, ref } from 'vue'
-import { FwbAlert, FwbButton } from 'flowbite-vue'
-import type { RecipeBare } from '@mono/server/src/shared/entities'
-import { CameraIcon } from '@heroicons/vue/24/outline'
+import { FwbAlert,  } from 'flowbite-vue'
 import Recipe from '@/components/Recipe.vue'
 import ProfileSide from '@/components/ProfileSide.vue'
+import AddRecipeBtn from '@/components/buttons/AddRecipeBtn.vue'
 
 const recipes = ref<RecipeBare[]>([])
 
@@ -30,17 +29,7 @@ onBeforeMount(async () => {
     </div>
 
     <div class="flex flex-col items-center gap-6 py-2 md:w-1/4">
-      <!-- prettier-ignore -->
-      <FwbButton
-        component="RouterLink"
-        tag="router-link"
-        :href="({ name: 'RecipeCreate' } as any)"
-        data-testid="createRecipe"
-        size="md"
-      >
-        Add a new recipe
-        <CameraIcon aria-hidden="true" class="inline h-4 w-4" />
-      </FwbButton>
+    <AddRecipeBtn/>
 
       <ProfileSide></ProfileSide>
     </div>

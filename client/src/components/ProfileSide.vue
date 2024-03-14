@@ -2,7 +2,7 @@
 import { trpc } from '@/trpc'
 import { ref, onBeforeMount } from 'vue'
 import { type UserProfileBare } from '@mono/server/src/shared/entities'
-import { FwbButton } from 'flowbite-vue'
+import CreateUserProfileBtn from '@/components/buttons/CreateUserProfileBtn.vue'
 
 const userProfile = ref<UserProfileBare>()
 
@@ -88,15 +88,7 @@ const toggleDropdown = () => {
   >
     <div class="flex h-24 flex-col items-center justify-center gap-4">
       <span class="text-gray-500 dark:text-gray-400">No user profile</span>
-      <FwbButton
-        component="RouterLink"
-        tag="router-link"
-        :href="{ name: 'userProfileCreate' } as any"
-        data-testid="createProject"
-        size="sm"
-      >
-        Create your profile
-      </FwbButton>
+      <CreateUserProfileBtn/>
     </div>
   </div>
 </template>

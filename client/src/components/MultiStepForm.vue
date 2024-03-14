@@ -14,7 +14,7 @@ watch(localRecipe, (newRecipe) => {
 
 <template>
   <FormKit type="form" :actions="false">
-    <FormKit type="multi-step" tab-style="progress" :allow-incomplete="false">
+    <FormKit  type="multi-step" tab-style="progress" :allow-incomplete="false">
       <FormKit type="step" name="Category">
         <FormKit
           type="select"

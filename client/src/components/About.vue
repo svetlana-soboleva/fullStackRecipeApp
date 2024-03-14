@@ -16,7 +16,7 @@
             recipes!
           </p>
           <div class="flex w-full justify-center pb-5 pt-5">
-            <a href="#" class="mx-5">
+            <a href="https://github.com/svetlana-so" class="mx-5">
               <div aria-label="Github">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"

@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { FwbNavbarLink } from 'flowbite-vue'
-import StackedLayout from './StackedLayout.vue'
+import ResponsiveNavBar from './ResponsiveNavBar.vue'
+
 import { logout } from '@/stores/user'
 import { useRouter } from 'vue-router'
 
@@ -8,7 +8,7 @@ const router = useRouter()
 
 const links = [
   { label: 'Dashboard', name: 'Dashboard' },
-  { label: 'AllRecipes', name: 'AllRecipes' },
+  { label: 'All Recipes', name: 'All Recipes' },
 ]
 
 function logoutUser() {
@@ -18,9 +18,14 @@ function logoutUser() {
 </script>
 
 <template>
-  <StackedLayout :links="links">
+  <ResponsiveNavBar :links="links">
     <template #menu>
-      <FwbNavbarLink @click.prevent="logoutUser" link="#">Logout</FwbNavbarLink>
+      <button
+        @click="logoutUser"
+        class="mx-12 w-28 cursor-pointer rounded-xl duration-300 hover:text-green-400"
+      >
+        Logout
+      </button>
     </template>
-  </StackedLayout>
+  </ResponsiveNavBar>
 </template>

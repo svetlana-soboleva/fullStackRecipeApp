@@ -6,7 +6,7 @@ import stepRouter from '..'
 
 const { db, recipes, users } = await setupTest()
 const { create } = stepRouter.createCaller(authContext({ db }, users[0]))
-it('should save and return a bug', async () => {
+it('should save and return a step', async () => {
   const step = fakeStep({ recipeId: recipes[0].id })
   const stepCreated = await create(step)
 

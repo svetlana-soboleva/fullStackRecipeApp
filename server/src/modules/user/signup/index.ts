@@ -16,18 +16,9 @@ export default publicProcedure
     const hash = await bcrypt.hash(password, config.auth.passwordCost)
 
     try {
-      let isAdmin = false
-      const userRepository = db.getRepository(User);
-
-      const existingUsersCount = await userRepository.count();
-
-      if (existingUsersCount === 0) {
-        isAdmin = true;
-      }
       const user = await db.getRepository(User).save({
         email,
         password: hash,
-        isAdmin
       })
 
       return {

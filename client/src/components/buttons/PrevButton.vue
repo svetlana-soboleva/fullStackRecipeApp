@@ -3,7 +3,7 @@ import { Menu, MenuButton, MenuItems, MenuItem } from '@headlessui/vue'
 
 const links = [
   { href: '/dashboard', label: 'Dashboard' },
-  { href: '/welcome', label: 'AllRecipes' },
+  { href: '/allRecipes', label: 'AllRecipes' },
 ]
 </script>
 

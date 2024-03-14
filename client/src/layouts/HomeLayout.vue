@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import StackedLayout from './StackedLayout.vue'
+import ResponsiveNavBar from './ResponsiveNavBar.vue';
 
 const links = [
   { label: 'Login', name: 'Login' },
@@ -7,6 +7,6 @@ const links = [
 ]
 </script>
 
-<template >
-  <StackedLayout :links="links"/>
+<template>
+  <ResponsiveNavBar :links="links"> </ResponsiveNavBar>
 </template>

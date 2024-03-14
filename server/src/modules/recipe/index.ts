@@ -4,7 +4,7 @@ import find from './find'
 import get from './get'
 import findAllPublicRecipes from './findAllPublicRecipes'
 import listById from './listById'
-import reciveRecipe from './revome'
+import removeRecipe from './remove'
 
 export default router({
   create,
@@ -12,5 +12,5 @@ export default router({
   get,
   findAllPublicRecipes,
   listById,
-  reciveRecipe,
+  removeRecipe,
 })
