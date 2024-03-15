@@ -9,8 +9,11 @@
             <img src="../assets/author1.png" />
           </div>
         </div>
-        <div class="mt-16 px-6">
-          <p class="pt-3 text-center text-base font-normal text-gray-600">
+        <div class="absolute top-32 md:top-52 lg:top-28 lg:right-48 right-40 md:right-20 w-60 mix-blend-multiply opacity-70">
+      <img src="../assets/cake.png" alt="" />
+    </div>
+        <div class="mt-16 px-6 ">
+          <p class="pt-3 text-center font-normal text-gray-600">
             Hi! I'm <strong>Svetlana</strong>. I'm passionate about food and creating a community
             where we can share our culinary experiences. Join me in exploring the world of delicious
             recipes!

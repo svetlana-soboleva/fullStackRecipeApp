@@ -36,12 +36,12 @@ const handleNoCategory = async () => {
 </script>
 
 <template>
-  <div class=" flex flex-col gap-4 md:flex-row justify-center items-center">
-    <MainHeader class="w-full md:w-1/3"/>
-  <About class="font-mono w-full md:w-1/3"/>
+  <div class="flex flex-col items-center justify-center gap-4 md:flex-row">
+    <MainHeader class="w-full md:w-1/3" />
+    <About class="w-full font-mono md:w-1/3" />
   </div>
-  
-  <div>
+
+  <div class="my-20">
     <Category
       :categories="categories"
       @selectedCategory="handleSelectedCategory"
@@ -54,7 +54,7 @@ const handleNoCategory = async () => {
     >
       <Recipe v-for="recipe in recipes" :key="recipe.id" :recipe="recipe" />
     </div>
-    <div v-else class="my-12 flex flex-col items-center justify-center gap-4 text-slate-700">
+    <div v-else class="my-12 flex flex-col items-center justify-end gap-4 text-slate-700">
       <p>No recipes found</p>
       <FaceFrownIcon aria-hidden="true" class="inline h-8 w-8" />
     </div>

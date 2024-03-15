@@ -35,7 +35,7 @@ const deleteFunction = async () => {
 </script>
 
 <template>
-  <div v-if="recipe">
+  <div class="min-h-screen" v-if="recipe">
     <PrevButton />
     <div
       class="flex flex-col rounded-lg border border-gray-200 bg-white shadow md:max-w-full lg:flex-row"
@@ -90,7 +90,7 @@ const deleteFunction = async () => {
         >
           <input id="toggleSwitch" type="checkbox" class="peer hidden" v-model="showInstructions" />
           <span
-            class="w-28 rounded-l-md shadow-md  bg-yellow-200 px-4 py-2 text-center font-mono font-semibold peer-checked:bg-gray-200 peer-checked:hover:bg-gray-400"
+            class="w-28 rounded-l-md shadow-md bg-yellow-200 px-4 py-2 text-center font-mono font-semibold peer-checked:bg-gray-200 peer-checked:hover:bg-gray-400"
             :class="{ 'bg-gray-300': !showInstructions }"
             >Steps</span
           >

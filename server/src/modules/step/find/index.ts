@@ -1,7 +1,7 @@
-import { recipeIdOwnerProcedure } from '@server/trpc/recipeIdOwnerProcedure'
 import { type StepBare, Step, stepSchema } from '@server/entities/step'
+import { publicProcedure } from '@server/trpc'
 
-export default recipeIdOwnerProcedure
+export default publicProcedure
   .input(
     stepSchema.pick({
       recipeId: true,

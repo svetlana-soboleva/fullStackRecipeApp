@@ -1,11 +1,11 @@
 import { Recipe, recipeSchema, type RecipeBare } from '@server/entities/recipe'
-import { authenticatedProcedure } from '@server/trpc/authenticatedProcedure'
+import { publicProcedure } from '@server/trpc'
 import { TRPCError } from '@trpc/server'
 
-export default authenticatedProcedure
+export default publicProcedure
   .input(recipeSchema.shape.id)
-  .query(async ({ input: recipeId, ctx: { authUser, db } }) => {
-    const recipe = (await db.getRepository(Recipe).findOne({
+  .query(async ({ input: recipeId, ctx: { db } }) => {
+    const recipe = (await db.getRepository(Recipe).findOneOrFail({
       where: { id: recipeId },
     })) as RecipeBare
 
@@ -13,12 +13,6 @@ export default authenticatedProcedure
       throw new TRPCError({
         code: 'NOT_FOUND',
         message: 'Recipe was not found',
-      })
-    }
-    if (recipe.userId !== authUser.id) {
-      throw new TRPCError({
-        code: 'FORBIDDEN',
-        message: 'You are not allowed to access this recipe',
       })
     }
     return recipe
