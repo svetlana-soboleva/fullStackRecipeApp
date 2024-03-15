@@ -37,8 +37,8 @@ export const stepSchema = validates<StepBare>().with({
   id: z.number().int().positive(),
   name: z.string().trim().min(2).max(100),
   recipeId: z.number().positive(),
-  ingredients: z.string().min(5).max(740),
-  description: z.string().min(5).max(750),
+  ingredients: z.string().min(5),
+  description: z.string().min(5),
 })
 
 export const stepInsertSchema = stepSchema.omit({

@@ -30,11 +30,15 @@ const handleNavItem = (link: any) => {
 const toggleNav = () => {
   nav.value = !nav.value
 }
+
+const navigateToAllRecipes = () => {
+  router.push({ name: 'All Recipes' }) 
+}
 </script>
 <template>
   <div class="mx-auto font-customFont font-semibold flex h-24 items-center justify-between bg-white px-4 text-black">
     <!-- Logo -->
-    <img src="../assets/logo.svg" alt="" class="w-32" />
+    <img src="../assets/logo.svg" alt="" class="w-32 cursor-pointer" @click="navigateToAllRecipes"/>
 
     <!-- Desktop Navigation -->
     <ul class="hidden md:flex">

@@ -20,7 +20,7 @@ const [submitLogin, errorMessage] = useErrorMessage(async () => {
 })
 </script>
 
-<template>
+<template >
   <PageForm heading="Log in to your account" formLabel="Login" @submit="submitLogin">
     <template #default>
       <FwbInput label="Email" type="email" v-model="userForm.email" :required="true" />
