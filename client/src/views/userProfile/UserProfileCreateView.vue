@@ -19,7 +19,7 @@ const errorMessage = ref('')
 
 async function createUserProfile() {
   try {
-    (await trpc.userProfile.create.mutate({
+    ;(await trpc.userProfile.create.mutate({
       ...userProfile.value,
     })) as UserProfileBare
 
@@ -31,13 +31,13 @@ async function createUserProfile() {
 </script>
 
 <template>
-  <div class="flex justify-center">
+  <div class="flex min-h-screen justify-center">
     <form aria-label="UserProfile" @submit.prevent="createUserProfile">
       <FwbInput label="Name" v-model="userProfile.name" type="text" />
 
       <FwbInput label="Surname" v-model="userProfile.surname" type="text" />
       <FwbInput
-        label="Picture lunk"
+        label="Picture link"
         v-model="userProfile.profile_picture"
         type="text"
         placeholder="http://"
@@ -54,7 +54,7 @@ async function createUserProfile() {
       <div class="mt-8 grid grid-cols-2 items-center gap-3">
         <FwbButton type="submit">Save</FwbButton>
         <RouterLink
-          class="text-center text-sm font-semibold leading-6 text-indigo-600 hover:text-indigo-500"
+          class="text-center text-sm font-semibold leading-6 text-red-500 hover:text-red-600"
           component="RouterLink"
           :to="{ name: 'Dashboard' }"
           >Cancel</RouterLink

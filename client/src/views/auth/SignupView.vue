@@ -5,21 +5,23 @@ import PageForm from '@/components/PageForm.vue'
 import { FwbAlert, FwbButton, FwbInput } from 'flowbite-vue'
 import { DEFAULT_SERVER_ERROR } from '@/consts'
 import AlertError from '@/components/AlertError.vue'
-// import useErrorMessage from '@/composables/useErrorMessage'
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
 
 const userForm = ref({
   email: '',
   password: '',
 })
 
-const hasSucceeded = ref(false)
+
 
 const errorMessage = ref('')
 async function submitSignup() {
   try {
     await signup(userForm.value)
     errorMessage.value = ''
-    hasSucceeded.value = true
+    router.push({ name: 'Login'})
   } catch (error) {
     errorMessage.value = error instanceof Error ? error.message : DEFAULT_SERVER_ERROR
   }
@@ -27,7 +29,12 @@ async function submitSignup() {
 </script>
 
 <template>
-  <PageForm heading="Sign up for an account" formLabel="Signup" @submit="submitSignup">
+  
+  <PageForm class="signupBg font-customFont"
+    heading="Sign up for an account"
+    formLabel="Signup"
+    @submit="submitSignup"
+  >
     <template #default>
       <FwbInput label="Email" type="email" v-model="userForm.email" :required="true" />
 
@@ -41,14 +48,6 @@ async function submitSignup() {
         :required="true"
       />
 
-      <FwbAlert v-if="hasSucceeded" data-testid="successMessage" type="success">
-        You have successfully signed up! You can now log in.
-        <RouterLink
-          :to="{ name: 'Login' }"
-          class="font-semibold leading-6 text-teal-600 hover:text-teal-500"
-          >Go to the login page</RouterLink
-        >
-      </FwbAlert>
       <AlertError :message="errorMessage">
         {{ errorMessage }}
       </AlertError>
@@ -71,3 +70,12 @@ async function submitSignup() {
     </template>
   </PageForm>
 </template>
+
+<style scoped>
+.signupBg{
+  background-image: url("../../assets/macaron.jpeg");
+  background-size:cover;
+background-repeat: no-repeat;
+background-position: center;
+}
+</style>

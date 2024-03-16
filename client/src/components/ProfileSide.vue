@@ -64,7 +64,7 @@ const toggleDropdown = () => {
     <div class="mx-2 flex flex-col items-center pb-10">
       <img
         v-if="userProfile.profile_picture"
-        class="mb-3 h-24 w-24 rounded-full shadow-lg"
+        class="object-cover mb-3 h-24 w-24 rounded-full shadow-lg"
         :src="userProfile.profile_picture"
         alt="Profile Picture"
       />

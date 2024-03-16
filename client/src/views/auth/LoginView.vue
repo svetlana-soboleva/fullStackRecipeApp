@@ -21,7 +21,7 @@ const [submitLogin, errorMessage] = useErrorMessage(async () => {
 </script>
 
 <template >
-  <PageForm heading="Log in to your account" formLabel="Login" @submit="submitLogin">
+  <PageForm class="loginBg font-customFont" heading="Log in to your account" formLabel="Login" @submit="submitLogin">
     <template #default>
       <FwbInput label="Email" type="email" v-model="userForm.email" :required="true" />
 
@@ -57,3 +57,12 @@ const [submitLogin, errorMessage] = useErrorMessage(async () => {
     </template>
   </PageForm>
 </template>
+
+<style scoped>
+.loginBg{
+  background-image: url("../../assets/macaronbacground.jpeg");
+  background-size:cover;
+background-repeat: no-repeat;
+background-position: center;
+}
+</style>

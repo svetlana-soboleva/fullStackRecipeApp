@@ -3,11 +3,11 @@ import { FwbButton } from 'flowbite-vue'
 </script>
 
 <template>
-  <div class="bg-white dark:bg-gray-800 lg:mx-auto lg:w-2/3">
+  <div class="font-customFont bg-white dark:bg-gray-800 lg:mx-auto lg:w-2/3">
     <div class="container mx-auto px-8 py-8 my-10">
       <div class="items-center lg:flex">
         <div class="lg:w-1/2">
-          <h2 class="text-3xl font-bold text-gray-800 dark:text-gray-100">
+          <h2 class="text-3xl font-bold text-green-800 dark:text-gray-100">
             Create your own recipe book!
           </h2>
 
