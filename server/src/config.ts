@@ -17,6 +17,8 @@ const schema = z
       .default('development'),
     isCi: z.preprocess(coerceBoolean, z.boolean().default(false)),
     port: z.coerce.number().default(3000),
+    sentryDSN: z.string().optional(),
+ 
 
     auth: z.object({
       tokenKey: z.string().default(() => {
@@ -48,6 +50,7 @@ const config = schema.parse({
   env: env.NODE_ENV,
   port: env.PORT,
   isCi: env.CI,
+  sentryDSN: env.SERVER_SENTRY_DSN,
 
   auth: {
     tokenKey: env.TOKEN_KEY,

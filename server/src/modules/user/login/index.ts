@@ -1,11 +1,13 @@
 import bcrypt from 'bcrypt'
 import config from '@server/config'
+import logger from '@server/logger'
 import jsonwebtoken from 'jsonwebtoken'
 import { publicProcedure } from '@server/trpc'
 import { User } from '@server/entities'
 import { TRPCError } from '@trpc/server'
 import { userSchema } from '@server/entities/user'
 import { prepareTokenPayload } from '../tokenPayload'
+
 
 const { expiresIn, tokenKey } = config.auth
 
@@ -47,7 +49,7 @@ export default publicProcedure
     const accessToken = jsonwebtoken.sign(payload, tokenKey, {
       expiresIn,
     })
-
+    logger.info(`User logged in: ${email}`)
     return {
       accessToken,
     }

@@ -84,4 +84,6 @@ The Recipe App is an evolving project, and future developments may include:
 
 - Comments: Adding a comment section for users to share their tips and experiences.
 
+- Add pagination to all recipes. 
+
 Feel free to contribute, suggest improvements, or share your favorite recipes to make this platform even better! Happy cooking!

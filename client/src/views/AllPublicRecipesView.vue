@@ -41,7 +41,7 @@ const handleNoCategory = async () => {
     <About class="w-full font-mono md:w-1/3" />
   </div>
 
-  <div class="my-20">
+  <div class="my-20 h-96 lg:min-h-screen md:min-h-screen">
     <Category
       :categories="categories"
       @selectedCategory="handleSelectedCategory"

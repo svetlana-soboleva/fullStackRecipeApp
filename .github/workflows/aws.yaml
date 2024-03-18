@@ -107,6 +107,7 @@ jobs:
     if: github.ref == 'refs/heads/main'
     env:
       API_ORIGIN: ${{ vars.API_ORIGIN }}
+      SENTRY_DSN: ${{ vars.SENTRY_DSN }}
       API_PATH: /api/v1/trpc
       CLIENT_IMAGE_TAG: client-${{ github.sha }}
       SERVER_IMAGE_TAG: server-${{ github.sha }}
@@ -143,6 +144,7 @@ jobs:
           -t $CLIENT_IMAGE_TAG
           --build-arg VITE_API_ORIGIN=$API_ORIGIN
           --build-arg VITE_API_PATH=$API_PATH
+          --build-arg VITE_SENTRY_DSN=$SENTRY_DSN
           -f ./client/Dockerfile .
 
       - name: Push server image
@@ -193,7 +195,8 @@ jobs:
                 "DB_NAME": "${{ secrets.PROD_DB_NAME }}",
                 "DB_USER": "${{ secrets.PROD_DB_USER }}",
                 "DB_PASSWORD": "${{ secrets.PROD_DB_PASSWORD }}",
-                "TOKEN_KEY": "${{ secrets.TOKEN_KEY }}"
+                "TOKEN_KEY": "${{ secrets.TOKEN_KEY }}",
+                "SERVER_SENTRY_DSN": "${{ secrets.SERVER_SENTRY_DSN }}"
               }
             }
           }' > containers.json

@@ -4,6 +4,7 @@ import { User } from '@server/entities'
 import config from '@server/config'
 import { userSchema } from '@server/entities/user'
 import { TRPCError } from '@trpc/server'
+import logger from '@server/logger'
 
 export default publicProcedure
   .input(
@@ -20,7 +21,7 @@ export default publicProcedure
         email,
         password: hash,
       })
-
+      logger.info(`New user created: ${user.email}`)
       return {
         id: user.id,
         email: user.email,
