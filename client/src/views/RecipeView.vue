@@ -44,7 +44,7 @@ const deleteFunction = async () => {
         <div class="absolute right-12 top-16">
           <div class="flex flex-col text-right">
             <h5
-              class="font-customFont mb-2 bg-white px-2 py-2 text-4xl font-bold tracking-tight text-black mix-blend-screen lg:text-6xl"
+              class="mb-2 bg-white px-2 py-2 font-customFont text-4xl font-bold tracking-tight text-black mix-blend-screen lg:text-6xl"
             >
               {{ recipe.tittle }}
             </h5>
@@ -52,14 +52,14 @@ const deleteFunction = async () => {
             <h6 class="font-mono text-2xl text-amber-200 lg:text-4xl">{{ category }}</h6>
           </div>
         </div>
-      
+
         <img
           class="w-full rounded-t-lg object-cover md:h-auto md:rounded-lg"
           :src="recipe.picture_link"
           alt=""
         />
         <div
-          class="font-customFont absolute bottom-0 left-0 right-0 mx-auto my-2 flex flex-row justify-between gap-4 bg-slate-100 px-8 py-2 opacity-50 transition-opacity duration-300 ease-in-out hover:opacity-100 hover:shadow-lg"
+          class="absolute bottom-0 left-0 right-0 mx-auto my-2 flex flex-row justify-between gap-4 bg-slate-100 px-8 py-2 font-customFont opacity-50 transition-opacity duration-300 ease-in-out hover:opacity-100 hover:shadow-lg"
         >
           <div class="flex flex-row items-center gap-2">
             <FormKitIcon icon="time" />
@@ -86,16 +86,16 @@ const deleteFunction = async () => {
         <!-- Toggle switch for Instructions and Steps -->
         <label
           for="toggleSwitch"
-          class="flex cursor-pointer justify-center rounded-md p-2 opacity-75 dark:text-gray-800 "
+          class="flex cursor-pointer justify-center rounded-md p-2 opacity-75 dark:text-gray-800"
         >
           <input id="toggleSwitch" type="checkbox" class="peer hidden" v-model="showInstructions" />
           <span
-            class="w-28 rounded-l-md shadow-md bg-yellow-200 px-4 py-2 text-center font-mono font-semibold peer-checked:bg-gray-200 peer-checked:hover:bg-gray-400"
+            class="w-28 rounded-l-md bg-yellow-200 px-4 py-2 text-center font-mono font-semibold shadow-md peer-checked:bg-gray-200 peer-checked:hover:bg-gray-400"
             :class="{ 'bg-gray-300': !showInstructions }"
             >Steps</span
           >
           <span
-            class="rw-28 rounded-r-md bg-gray-300 shadow-md  px-4 py-2 text-center font-mono font-semibold hover:bg-gray-400 peer-checked:bg-yellow-200"
+            class="rw-28 rounded-r-md bg-gray-300 px-4 py-2 text-center font-mono font-semibold shadow-md hover:bg-gray-400 peer-checked:bg-yellow-200"
             :class="{ 'bg-violet-400': showInstructions }"
             >Instructions</span
           >

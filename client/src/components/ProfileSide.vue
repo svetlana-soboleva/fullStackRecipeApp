@@ -20,7 +20,7 @@ const toggleDropdown = () => {
 <template>
   <div
     v-if="userProfile"
-    class="font-mono w-full max-w-sm rounded-lg border border-gray-200 bg-white shadow dark:border-gray-700 dark:bg-gray-800"
+    class="w-full max-w-sm rounded-lg border border-gray-200 bg-white font-mono shadow dark:border-gray-700 dark:bg-gray-800"
   >
     <div class="flex justify-end px-4 pt-4">
       <!-- Dropdown button and menu here -->
@@ -46,14 +46,14 @@ const toggleDropdown = () => {
       <!-- Dropdown menu -->
       <div
         id="dropdown"
-        class="absolute top-32 z-10 w-32 list-none divide-gray-100 rounded-lg bg-white text-base shadow dark:bg-gray-700"
+        class="absolute top-40 z-10 w-32 list-none divide-gray-100 rounded-lg bg-yellow-200 text-base opacity-75 shadow hover:bg-lime-200 dark:bg-gray-700"
         v-show="isDropdownOpen"
       >
         <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownButton">
           <li>
             <router-link
               :to="{ name: 'userProfileUpdate', params: { id: userProfile.id } }"
-              class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+              class="block px-4 py-2 dark:hover:bg-gray-600 dark:hover:text-white"
             >
               Edit profile
             </router-link>
@@ -64,13 +64,13 @@ const toggleDropdown = () => {
     <div class="mx-2 flex flex-col items-center pb-10">
       <img
         v-if="userProfile.profile_picture"
-        class="object-cover mb-3 h-24 w-24 rounded-full shadow-lg"
+        class="mb-3 h-24 w-24 rounded-full object-cover shadow-lg"
         :src="userProfile.profile_picture"
         alt="Profile Picture"
       />
       <img
         v-else
-        class="mb-3 h-24 w-24 rounded-full shadow-lg"
+        class="mb-3 h-16 w-16 rounded-full shadow-lg"
         src="../assets/profile.png"
         alt="User Default Picture"
       />
@@ -88,7 +88,7 @@ const toggleDropdown = () => {
   >
     <div class="flex h-24 flex-col items-center justify-center gap-4">
       <span class="text-gray-500 dark:text-gray-400">No user profile</span>
-      <CreateUserProfileBtn/>
+      <CreateUserProfileBtn />
     </div>
   </div>
 </template>

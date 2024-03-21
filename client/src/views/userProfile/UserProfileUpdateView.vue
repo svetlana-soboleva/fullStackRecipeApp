@@ -81,7 +81,6 @@ async function deletUserProfile() {
       </div>
       <div v-if="typeof userProfile.about === 'string'">
         <FwbTextarea
-          v-if="userProfile.about"
           label="About"
           name="about"
           v-model="userProfile.about"
