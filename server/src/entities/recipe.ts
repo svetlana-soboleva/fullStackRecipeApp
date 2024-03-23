@@ -91,4 +91,6 @@ export const recipeInsertSchema = recipeSchema.omit({
   id: true,
   createdAt: true,
 })
+export const  recipeUpdateSchema = recipeSchema
+  .omit({ userId: true, createdAt: true })
 export type RecipeInsert = z.infer<typeof recipeInsertSchema>

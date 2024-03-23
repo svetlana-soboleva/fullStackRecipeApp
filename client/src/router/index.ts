@@ -23,7 +23,6 @@ const router = createRouter({
           name: 'userProfileCreate',
           component: () => import('../views/userProfile/UserProfileCreateView.vue'),
         },
-
         {
           path: 'userProfile/:id/update',
           name: 'userProfileUpdate',
@@ -37,12 +36,17 @@ const router = createRouter({
         {
           path: 'recipe/:id/step/create',
           name: 'StepCreate',
-          component: () => import('../views/StepCreateView.vue'),
+          component: () => import('../views/steps/StepCreateView.vue'),
         },
         {
           path: 'recipe/:id',
           name: 'Recipe',
           component: () => import('../views/RecipeView.vue'),
+        },
+        {
+          path: 'steps/:id/update',
+          name: 'StepUpdateView',
+          component: () => import('../views/steps/StepUpdateView.vue'),
         },
       ],
     },

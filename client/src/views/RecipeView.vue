@@ -8,6 +8,9 @@ import Step from '../components/Step.vue'
 import Instructions from '../components/Instructions.vue'
 import DeleteButton from '@/components/buttons/DeleteButton.vue'
 import PrevButton from '@/components/buttons/PrevButton.vue'
+import { ArrowPathIcon } from '@heroicons/vue/24/outline'
+import UpdateButton from '@/components/buttons/UpdateButton.vue'
+import { FwbButton } from 'flowbite-vue'
 
 const route = useRoute()
 const router = useRouter()
@@ -32,6 +35,9 @@ const deleteFunction = async () => {
   await trpc.recipe.removeRecipe.mutate({ id: recipeId })
   router.push({ name: 'Dashboard' })
 }
+
+const navigate =() => router.push({ name: 'StepCreate', params: { id: recipeId } } as any)
+
 </script>
 
 <template>
@@ -44,7 +50,7 @@ const deleteFunction = async () => {
         <div class="absolute right-12 top-16">
           <div class="flex flex-col text-right">
             <h5
-              class="mb-2 bg-white px-2 py-2 font-customFont text-4xl font-bold tracking-tight text-black mix-blend-screen lg:text-6xl"
+              class="mb-2 bg-slate-200 px-2 py-2 font-customFont text-4xl font-bold tracking-tight text-black mix-blend-screen lg:text-6xl"
             >
               {{ recipe.tittle }}
             </h5>
@@ -107,7 +113,7 @@ const deleteFunction = async () => {
           </div>
         </div>
         <div v-else>
-          <div class="mx-4 flex flex-wrap justify-start">
+          <div v-if="steps.length > 0" class="mx-4 flex flex-wrap justify-start">
             <Step
               v-for="step in steps"
               role="listitem"
@@ -116,10 +122,19 @@ const deleteFunction = async () => {
               class="w-full sm:w-1/2 md:w-1/2 lg:w-1/2 xl:w-1/2"
             />
           </div>
+          <div v-else class="flex justify-center">
+            <fwb-button @click="navigate" class="my-8 bg-green-300">Add description</fwb-button>
+          </div>
         </div>
       </div>
-      <DeleteButton class="m-2 h-12 self-end" @click="deleteFunction" />
+      <div class="flex flex-row justify-between">
+        <UpdateButton :route="{ name: 'StepUpdateView' }" class="m-2" />
+        <DeleteButton class="m-2 h-12" @click="deleteFunction" />
+      </div>
     </div>
+  </div>
+  <div v-else class="m-10 flex justify-center">
+    <ArrowPathIcon aria-hidden="true" class="inline h-8 w-8 animate-spin text-stone-600" />
   </div>
 </template>
 

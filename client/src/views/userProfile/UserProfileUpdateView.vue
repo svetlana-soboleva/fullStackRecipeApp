@@ -63,7 +63,6 @@ async function deletUserProfile() {
     </div>
 
     <form aria-label="UserProfile" @submit.prevent="updateUserProfile">
-      <!--  resolve this bug with v-if -->
       <div v-if="typeof userProfile.name === 'string'">
         <FwbInput label="Name" v-model="userProfile.name" type="text" />
       </div>
