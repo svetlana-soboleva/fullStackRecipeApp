@@ -60,7 +60,7 @@ const [submitLogin, errorMessage] = useErrorMessage(async () => {
 
 <style scoped>
 .loginBg{
-  background-image: url("../../assets/macaronbacground.jpeg");
+  background-image: url("../../assets/macaronbacground.jpg");
   background-size:cover;
 background-repeat: no-repeat;
 background-position: center;
