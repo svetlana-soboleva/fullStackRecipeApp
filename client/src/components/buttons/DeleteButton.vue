@@ -2,11 +2,11 @@
 
 <template>
   <button
-    class="inline-flex items-center rounded-md bg-red-500 p-4 text-sm font-medium text-white hover:bg-red-700 opacity-80"
+    class="inline-flex items-center rounded-md bg-red-500 p-4 font-medium text-white hover:bg-red-700 opacity-80"
   >
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      class="h-5 w-5"
+      class="h-4 w-4"
       fill="none"
       viewBox="0 0 24 24"
       stroke="currentColor"

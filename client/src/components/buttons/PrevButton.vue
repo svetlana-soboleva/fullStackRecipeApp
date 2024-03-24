@@ -8,7 +8,7 @@ const links = [
 </script>
 
 <template>
-  <div class="relative z-50">
+  <div class="relative z-50 font-customFont">
     <Menu>
       <MenuButton
         class="my-2 rounded-l-lg bg-yellow-200 px-4 py-2 text-slate-600 shadow-md hover:bg-lime-100"

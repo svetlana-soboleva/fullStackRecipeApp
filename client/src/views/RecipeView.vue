@@ -42,7 +42,14 @@ const navigate =() => router.push({ name: 'StepCreate', params: { id: recipeId }
 
 <template>
   <div class="min-h-screen" v-if="recipe">
-    <PrevButton />
+    <div class="flex flex-row justify-between">
+       <PrevButton />
+       <div>
+        <UpdateButton :route="{ name: 'StepUpdateView' }" class="m-2" v-if="steps.length > 0"/>
+        <DeleteButton class="m-2 h-12" @click="deleteFunction" />
+       </div>
+        
+      </div>
     <div
       class="flex flex-col rounded-lg border border-gray-200 bg-white shadow md:max-w-full lg:flex-row"
     >
@@ -65,7 +72,7 @@ const navigate =() => router.push({ name: 'StepCreate', params: { id: recipeId }
           alt=""
         />
         <div
-          class="absolute bottom-0 left-0 right-0 mx-auto my-2 flex flex-row justify-between gap-4 bg-slate-100 px-8 py-2 font-customFont opacity-50 transition-opacity duration-300 ease-in-out hover:opacity-100 hover:shadow-lg"
+          class="relative bottom-0 left-0 right-0 mx-auto flex flex-row justify-between gap-4 bg-slate-100 px-8 py-2 font-customFont opacity-50 transition-opacity duration-300 ease-in-out hover:opacity-100 hover:shadow-lg"
         >
           <div class="flex flex-row items-center gap-2">
             <FormKitIcon icon="time" />
@@ -127,10 +134,7 @@ const navigate =() => router.push({ name: 'StepCreate', params: { id: recipeId }
           </div>
         </div>
       </div>
-      <div class="flex flex-row justify-between">
-        <UpdateButton :route="{ name: 'StepUpdateView' }" class="m-2" />
-        <DeleteButton class="m-2 h-12" @click="deleteFunction" />
-      </div>
+      
     </div>
   </div>
   <div v-else class="m-10 flex justify-center">

@@ -32,6 +32,8 @@ User Profile: Share your culinary journey by crafting a personalized user profil
 - `Tailwind CSS`
 - `Playwright`
 - `Zod`
+- 'Sentry'
+- 'Pino Logger' 
 
 ## 🚦 Running the Project
 

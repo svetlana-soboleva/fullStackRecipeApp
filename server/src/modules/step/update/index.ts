@@ -35,7 +35,7 @@ export default authenticatedProcedure
     if (!step) {
       throw new TRPCError({
         code: 'NOT_FOUND',
-        message: 'Step not found',
+        message: 'Step is deleted',
       });
     }
     

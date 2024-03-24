@@ -35,10 +35,10 @@ export type StepBare = Omit<Step, 'recipe'>
 
 export const stepSchema = validates<StepBare>().with({
   id: z.number().int().positive(),
-  name: z.string().trim().min(2).max(100),
+  name: z.string().trim(),
   recipeId: z.number().positive(),
-  ingredients: z.string().min(5),
-  description: z.string().min(5),
+  ingredients: z.string(),
+  description: z.string(),
 })
 
 export const stepInsertSchema = stepSchema.omit({
