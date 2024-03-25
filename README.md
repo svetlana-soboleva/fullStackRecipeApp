@@ -38,7 +38,7 @@ User Profile: Share your culinary journey by crafting a personalized user profil
 ## 🚦 Running the Project
 
 1. Clone the repository to your local machine.
-2. 3. Install dependencies using npm install.
+2. Install dependencies using npm install.
 
 `npm install`
 
@@ -80,12 +80,26 @@ npm run test:unit
 
 The Recipe App is an evolving project, and future developments may include:
 
-- Admin Panel: create a separate dashboard accessible only to administrators. Implement authentication and authorization mechanisms to ensure only authorized users can access the admin panel. Include functionalities such as managing users, recipes, categories, and other relevant data.
+- Admin Panel: 
+* Create a separate dashboard accessible only to administrators.
+* Implement authentication and authorization mechanisms to ensure only authorized users can access the admin panel.
+* Include functionalities such as managing users, recipes, categories, and other relevant data.
 
-- Review System: Allowing users to leave reviews and ratings for recipes.
+- Review System: 
+* Allow users to leave reviews and ratings for recipes.
+* Provide a rating system to help users gauge the quality of recipes.
 
-- Comments: Adding a comment section for users to share their tips and experiences.
+- Comments: 
+* Adding a comment section for users to share their tips and experiences.
 
-- Add pagination to all recipes. 
+- Pagination:
+* Implement pagination for all recipes to enhance user experience and improve performance.
+* Display a limited number of recipes per page, allowing users to navigate through multiple pages easily.
+
+- Like and Favorite Features:
+* Implement the ability for users to like recipes or mark them as favorites for future reference.
+* Add buttons or icons on recipe cards to enable users to like or favorite recipes with a single click.
+* Store user preferences securely to maintain a list of liked and favorite recipes for each user profile.
+
 
 Feel free to contribute, suggest improvements, or share your favorite recipes to make this platform even better! Happy cooking!
