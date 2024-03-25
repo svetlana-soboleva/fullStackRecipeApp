@@ -20,6 +20,7 @@ const toggleDropdown = () => {
 <template>
   <div
     v-if="userProfile"
+    data-testid="userProfile"
     class="w-full max-w-sm rounded-lg border border-gray-200 bg-white font-mono shadow dark:border-gray-700 dark:bg-gray-800"
   >
     <div class="flex justify-end px-4 pt-4">
@@ -54,6 +55,7 @@ const toggleDropdown = () => {
             <router-link
               :to="{ name: 'userProfileUpdate', params: { id: userProfile.id } }"
               class="block px-4 py-2 dark:hover:bg-gray-600 dark:hover:text-white"
+              data-testid="dropdown"
             >
               Edit profile
             </router-link>
@@ -83,6 +85,7 @@ const toggleDropdown = () => {
     </div>
   </div>
   <div
+  data-testid="noUserProfile"
     v-else
     class="w-full max-w-sm rounded-lg border border-gray-200 bg-white shadow dark:border-gray-700 dark:bg-gray-800"
   >

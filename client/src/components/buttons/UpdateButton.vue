@@ -15,6 +15,7 @@ function navigate() {
 
 <template>
   <button
+  data-testId="updateBtn"
     @click.prevent="navigate"
     class="h-12 w-12 items-center rounded-md bg-green-300 p-4 text-sm font-medium text-white opacity-80 hover:bg-green-400"
   >

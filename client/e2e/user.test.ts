@@ -10,16 +10,12 @@ test.describe.serial('signup and login sequence', () => {
     await page.goto('/signup')
     const successMessage = page.getByTestId('successMessage')
     await expect(successMessage).toBeHidden() 
-
-    
     const form = page.getByRole('form', { name: 'Signup' })
     await form.locator('input[type="email"]').fill(email)
     await form.locator('input[type="password"]').fill(password)
     await form.locator('button[type="submit"]').click()
 
   })
-
-
 
   test('visitor can not access dashboard before login', async ({ page }) => {
     await page.goto('/dashboard')
@@ -36,9 +32,6 @@ test.describe.serial('signup and login sequence', () => {
     await form.locator('input[type="email"]').fill(email)
     await form.locator('input[type="password"]').fill(password)
     await form.locator('button[type="submit"]').click()
-
-    /* await page.reload()
-    await expect(welcomeMsg).toBeVisible() */
   })
 })
 

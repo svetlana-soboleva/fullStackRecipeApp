@@ -9,7 +9,7 @@ defineProps<{
 </script>
 
 <template>
-  <Card class="max-w-xs overflow-hidden rounded shadow-lg">
+  <Card data-testId="recipeCardTest" class="max-w-xs overflow-hidden rounded shadow-lg">
     <router-link :to="{ name: 'Recipe', params: { id: recipe.id } }">
       <img class="w-full h-80 object-cover" :src="recipe.picture_link" :alt="recipe.tittle" />
       <div class="px-6 py-4">

@@ -2,6 +2,7 @@
 
 <template>
   <button
+  data-testId="deleteBtn"
     class="inline-flex items-center rounded-md bg-red-500 p-4 font-medium text-white hover:bg-red-700 opacity-80"
   >
     <svg

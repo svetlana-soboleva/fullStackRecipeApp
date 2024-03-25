@@ -1,20 +1,20 @@
 <script setup lang="ts">
-import { defineProps, defineEmits, ref, watch } from 'vue';
+import { defineProps, defineEmits, ref, watch } from 'vue'
 
-const { recipe: propRecipe } = defineProps(['recipe']);
+const { recipe: propRecipe } = defineProps(['recipe'])
 
-const emit = defineEmits(['updateRecipe']);
+const emit = defineEmits(['updateRecipe'])
 
-const localRecipe = ref(propRecipe);
+const localRecipe = ref(propRecipe)
 
 watch(localRecipe, (newRecipe) => {
-  emit('updateRecipe', newRecipe);
-});
+  emit('updateRecipe', newRecipe)
+})
 </script>
 
 <template>
   <FormKit type="form" :actions="false">
-    <FormKit  type="multi-step" tab-style="progress" :allow-incomplete="false">
+    <FormKit type="multi-step" tab-style="progress" :allow-incomplete="false">
       <FormKit type="step" name="Category">
         <FormKit
           type="select"
@@ -40,6 +40,7 @@ watch(localRecipe, (newRecipe) => {
 
       <FormKit type="step" name="Description">
         <FormKit
+          data-testid="tittle"
           type="text"
           v-model="localRecipe.tittle"
           label="Give a name to your recipe:"
@@ -47,6 +48,7 @@ watch(localRecipe, (newRecipe) => {
           placeholder="Give a name to your recipe"
         />
         <FormKit
+          data-testid="description"
           type="textarea"
           v-model="localRecipe.description"
           label="Give a short description to your recipe:"
@@ -56,6 +58,7 @@ watch(localRecipe, (newRecipe) => {
         <FormKit
           v-model="localRecipe.cooking_time"
           type="number"
+          data-testid="cooking_time"
           label="Cook Time (min):"
           name="cook time"
           value="25"
@@ -65,6 +68,7 @@ watch(localRecipe, (newRecipe) => {
         <FormKit
           type="number"
           label="Servings:"
+          data-testid="servings"
           name="servings"
           value="2"
           step="1"
@@ -72,6 +76,7 @@ watch(localRecipe, (newRecipe) => {
           v-model="localRecipe.servings"
         />
         <FormKit
+          data-testid="pictureLink"
           type="text"
           label="Picture link:"
           name="link"
@@ -79,6 +84,7 @@ watch(localRecipe, (newRecipe) => {
           v-model="localRecipe.picture_link"
         />
         <FormKit
+          data-testid="videoLink"
           type="text"
           label="Video link:"
           name="link"
@@ -86,6 +92,7 @@ watch(localRecipe, (newRecipe) => {
           v-model="localRecipe.video"
         />
         <FormKit
+          data-testid="visibility"
           v-model="localRecipe.visibility"
           validation="required"
           type="radio"

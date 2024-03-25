@@ -11,7 +11,7 @@ function navigate() {
 <template>
   <button
     @click.prevent="navigate"
-    data-testid="createProject"
+    data-testid="createUserProfile"
     class="inline-flex items-center rounded-md bg-green-500 px-4 py-2 text-sm font-medium text-white opacity-80 hover:bg-green-700"
   >
   Create your profile
