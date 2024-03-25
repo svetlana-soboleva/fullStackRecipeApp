@@ -6,6 +6,7 @@ import { FwbButton } from 'flowbite-vue'
 import MultiStepForm from '@/components/MultiStepForm.vue'
 import AlertError from '@/components/AlertError.vue'
 import { type RecipeBare } from '@mono/server/src/shared/entities'
+import useErrorMessage from '@/composables/useErrorMessage'
 
 const router = useRouter()
 
@@ -20,28 +21,24 @@ const recipe = ref({
   visibility: '',
 })
 
-const errorMessage = ref('')
 
-async function createRecipe() {
-  try {
-    const category_id = await trpc.category.create.mutate({ name: recipe.value.category })
-    const createdRecipe = (await trpc.recipe.create.mutate({
-      ...recipe.value,
-      categoryId: category_id.id,
-    })) as RecipeBare
-    router.push({ name: 'StepCreate', params: { id: createdRecipe.id } } as any)
-  } catch (error: any) {
-    errorMessage.value = error.message || 'An unexpected error occurred.'
-    console.log(errorMessage.value)
-  }
-}
+const [createRecipe, errorMessage] = useErrorMessage(async () => {
+  const category_id = await trpc.category.create.mutate({ name: recipe.value.category })
+  const createdRecipe = (await trpc.recipe.create.mutate({
+    ...recipe.value,
+    categoryId: category_id.id,
+  })) as RecipeBare
+  router.push({ name: 'StepCreate', params: { id: createdRecipe.id } } as any)
+})
+
+
 const handleUpdateRecipe = (newRecipe: any) => {
   recipe.value = newRecipe
 }
 </script>
 
 <template>
-  <div class="min-h-screen  flex justify-center">
+  <div class="flex min-h-screen justify-center">
     <form aria-label="Recipe" @submit.prevent="createRecipe">
       <MultiStepForm :recipe="recipe" @updateRecipe="handleUpdateRecipe" />
       <AlertError class="" :message="errorMessage" />

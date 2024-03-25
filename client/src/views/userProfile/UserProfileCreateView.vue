@@ -5,6 +5,7 @@ import { useRouter } from 'vue-router'
 import { FwbButton, FwbInput, FwbTextarea } from 'flowbite-vue'
 import AlertError from '@/components/AlertError.vue'
 import { type UserProfileBare } from '@mono/server/src/shared/entities'
+import useErrorMessage from '@/composables/useErrorMessage'
 
 const router = useRouter()
 
@@ -15,19 +16,14 @@ const userProfile = ref({
   about: '',
 })
 
-const errorMessage = ref('')
 
-async function createUserProfile() {
-  try {
-    ;(await trpc.userProfile.create.mutate({
+const [createUserProfile, errorMessage ] = useErrorMessage(async () => {
+  (await trpc.userProfile.create.mutate({
       ...userProfile.value,
     })) as UserProfileBare
-
     router.push({ name: 'Dashboard' })
-  } catch (error: any) {
-    errorMessage.value = error.message || 'An unexpected error occurred.'
-  }
-}
+})
+
 </script>
 
 <template>
