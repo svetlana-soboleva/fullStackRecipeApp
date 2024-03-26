@@ -57,6 +57,7 @@ const navigate =() => router.push({ name: 'StepCreate', params: { id: recipeId }
         <div class="absolute right-12 top-16">
           <div class="flex flex-col text-right">
             <h5
+            data-testId="recipeHeading"
               class="mb-2 bg-slate-200 px-2 py-2 font-customFont text-4xl font-bold tracking-tight text-black mix-blend-screen lg:text-6xl"
             >
               {{ recipe.tittle }}
@@ -127,6 +128,7 @@ const navigate =() => router.push({ name: 'StepCreate', params: { id: recipeId }
               :key="step.id"
               :step="step"
               class="w-full sm:w-1/2 md:w-1/2 lg:w-1/2 xl:w-1/2"
+              data-testId="ingredients"
             />
           </div>
           <div v-else class="flex justify-center">

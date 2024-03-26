@@ -31,3 +31,4 @@ export const fakeUserProfile = () => ({
   profile_picture: random.url(),
   about: random.string()
 })
+

@@ -26,6 +26,7 @@ const toggleDropdown = () => {
     <div class="flex justify-end px-4 pt-4">
       <!-- Dropdown button and menu here -->
       <button
+      data-testid="dropdownUserProfile"
         id="dropdownButton"
         data-dropdown-toggle="dropdown"
         class="absolute inline-block rounded-lg p-1.5 text-sm text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-700"
@@ -76,7 +77,7 @@ const toggleDropdown = () => {
         src="../assets/profile.png"
         alt="User Default Picture"
       />
-      <h5 class="mb-1 text-center text-xl font-medium text-gray-900 dark:text-white">
+      <h5 data-testid="userProfileFullName" class="mb-1 text-center text-xl font-medium text-gray-900 dark:text-white">
         {{ userProfile.name }} {{ userProfile.surname }}
       </h5>
       <span class="text-center text-sm text-gray-500 dark:text-gray-400">{{

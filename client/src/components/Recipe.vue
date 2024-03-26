@@ -13,7 +13,7 @@ defineProps<{
     <router-link :to="{ name: 'Recipe', params: { id: recipe.id } }">
       <img class="w-full h-80 object-cover" :src="recipe.picture_link" :alt="recipe.tittle" />
       <div class="px-6 py-4">
-        <div class="font-mono text-gray-600 mb-2 text-xl font-bold">{{ recipe.tittle }}</div>
+        <div data-testId="recipeCardHeading" class="font-mono text-gray-600 mb-2 text-xl font-bold">{{ recipe.tittle }}</div>
         <p class="font-mono text-gray-500">
           {{ recipe.description }}
         </p>

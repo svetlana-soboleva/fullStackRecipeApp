@@ -20,6 +20,7 @@ test.describe.serial('user profile sequence', () => {
     await expect(userProfileCreated).toBeVisible()
     const dropdownBtn = page.locator('#dropdownButton')
     await expect(dropdownBtn).toBeVisible()
+    await expect(page.getByTestId('userProfileFullName')).toHaveText(`${name} ${surname}`)
 
   })
 
@@ -33,13 +34,16 @@ test.describe.serial('user profile sequence', () => {
     await page.locator('div').filter({ hasText: /^Surname$/ }).getByTestId('userProfileSurname').click();
     await page.locator('div').filter({ hasText: /^Surname$/ }).getByTestId('userProfileSurname').fill(surname);
     await page.getByTestId('saveBtnUserProfile').click();
-    await expect(page.getByRole('heading', { name: `${name} ${surname}` })).toBeVisible()
 
-    await page.locator('#dropdownButton').click();
+    await expect(page.getByRole('heading', { name: `${name} ${surname}` })).toBeVisible()
+    await expect(page.getByTestId('dropdownUserProfile')).toBeVisible()
+    
+    await page.getByTestId('dropdownUserProfile').click();
     await page.getByTestId('dropdown').click();
     await page.getByRole('textbox').first().click();
     await page.getByRole('textbox').first().fill('new name');
     await page.getByRole('button', { name: 'Save' }).click();
+    
     await expect(page.getByRole('heading', { name: `new name ${surname}` })).toBeVisible()
   })
 
