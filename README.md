@@ -2,7 +2,7 @@
 
 Welcome to the Recipe App! This is a project developed with the goal of creating a platform for sharing and discovering high-quality recipes. As a pastry chef, I understand the challenges of finding reliable and professional recipes. This app aims to bridge that gap and provide a platform where everyone can access and cook like a pro.
 
-The Recipe App has been successfully deployed! You can now visit the following link to explore and enjoy the recipes: [(https://recipeapp.cru48dbdvmnvs.eu-north-1.cs.amazonlightsail.com/)] 
+The Recipe App has been successfully deployed! You can now visit the following link to explore and enjoy the recipes: [(i have paused the direkt link for now)] 
 
 # 🎯 Motivation
 
